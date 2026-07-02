@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generator Palet Warna · 416 Warna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#5bbfc4;--teal-light:#9AE2E6;--teal-dark:#3a9fa4;
+  --peach:#f7a0a0;--peach-light:#FAB1B1;--peach-dark:#e07878;
+  --cream:#F2E9CB;
+  --bg:#111010;--surface:#1c1a19;--surface2:#242120;
+  --border:#2a2826;--border2:#3a3532;
+  --text:#fdf9f6;--muted:#8a7e75;--muted2:#5a5250;
+  --grad:linear-gradient(90deg,var(--teal),var(--peach));
+  --grad135:linear-gradient(135deg,var(--teal),var(--peach));
+}
+*{font-family:'Nunito',sans-serif!important;}
+input,button,textarea{font-family:'Nunito',sans-serif!important;}
+body{background:var(--bg);color:var(--text);min-height:100vh}
+
+/* ── NAVBAR ── */
+.navbar{
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  padding:0 32px;height:56px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+}
+.navbar-brand{font-size:17px;font-weight:900;letter-spacing:.01em;text-decoration:none;line-height:1}
+.navbar-brand .craving{color:var(--text)}
+.navbar-brand .art{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.navbar-home{
+  display:flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:700;color:var(--muted);
+  text-decoration:none;padding:7px 14px;
+  border-radius:8px;border:1px solid var(--border2);
+  letter-spacing:.03em;text-transform:uppercase;
+  transition:color .15s,border-color .15s;
+}
+.navbar-home:hover{color:var(--teal-light);border-color:var(--teal)}
+.navbar-home svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ── HERO ── */
+.hero{
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  padding:0;
+  position:relative;overflow:hidden;
+}
+.hero::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:1px;
+  background:var(--grad);
+}
+.hero-inner{
+  max-width:860px;margin:0 auto;
+  padding:52px 40px 48px;
+  display:grid;grid-template-columns:1fr auto;
+  align-items:center;gap:40px;
+}
+.hero-left{}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--teal-light);
+  background:rgba(91,191,196,.1);
+  border:1px solid rgba(91,191,196,.2);
+  border-radius:4px;padding:4px 10px;
+  margin-bottom:18px;
+}
+.hero-badge-dot{width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0}
+.hero h1{
+  font-size:42px;font-weight:900;
+  letter-spacing:-.03em;line-height:1.05;
+  margin-bottom:14px;color:var(--text);
+}
+.hero h1 .grad-text{
+  background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:block;
+}
+.hero p{font-size:13px;color:var(--muted);line-height:1.75;max-width:420px}
+.hero-stats{
+  display:flex;flex-direction:column;gap:8px;
+  flex-shrink:0;
+}
+.hero-stat{
+  background:var(--surface2);border:1px solid var(--border2);
+  border-radius:10px;padding:14px 20px;text-align:center;
+  min-width:100px;
+}
+.hero-stat-n{
+  font-size:26px;font-weight:900;line-height:1;
+  margin-bottom:3px;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-stat-l{font-size:10px;font-weight:700;color:var(--muted2);letter-spacing:.08em;text-transform:uppercase}
+
+/* ── UPLOAD WRAP ── */
+.upload-wrap{max-width:860px;margin:40px auto 0;padding:0 40px;transition:opacity .3s,max-height .4s;overflow:hidden;max-height:600px}
+.upload-wrap.hidden{opacity:0;max-height:0;margin:0;pointer-events:none}
+
+/* ── DROP ZONE ── */
+.drop-zone{
+  border:1px dashed var(--border2);
+  border-radius:14px;
+  padding:40px 32px 32px;
+  text-align:center;
+  background:var(--surface);
+  cursor:pointer;
+  transition:border-color .2s,background .2s;
+  position:relative;
+  overflow:hidden;
+}
+.drop-zone::before{
+  content:'';position:absolute;
+  bottom:-40px;right:-40px;
+  width:120px;height:120px;
+  background:var(--grad135);
+  opacity:.05;border-radius:50%;
+  pointer-events:none;
+}
+.drop-zone:hover,.drop-zone.drag-over{border-color:var(--teal);background:var(--surface2)}
+.drop-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.drop-icon{
+  width:48px;height:48px;
+  margin:0 auto 16px;
+  border-radius:12px;
+  background:var(--grad135);
+  display:flex;align-items:center;justify-content:center;
+}
+.drop-icon svg{width:20px;height:20px;fill:none;stroke:white;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.drop-zone h3{font-size:15px;font-weight:800;margin-bottom:5px;color:var(--text)}
+.drop-zone p{font-size:12px;color:var(--muted)}
+.upload-tips{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  margin-top:20px;text-align:left;
+}
+.tip-item{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:8px;padding:10px 12px;
+  display:flex;align-items:flex-start;gap:8px;
+  font-size:11px;color:var(--muted);line-height:1.5;
+}
+.tip-dash{
+  flex-shrink:0;
+  font-size:13px;font-weight:900;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1.4;
+}
+
+/* ── SLIDER ── */
+.slider-wrap{max-width:860px;margin:16px auto 0;padding:0 40px;transition:opacity .3s,max-height .4s;overflow:hidden;max-height:200px}
+.slider-wrap.hidden{opacity:0;max-height:0;margin:0;pointer-events:none}
+.slider-inner{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:18px 22px;
+  display:flex;flex-direction:column;gap:12px;
+}
+.slider-label-row{display:flex;align-items:center;justify-content:space-between}
+.slider-label-text{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.slider-badge{
+  height:28px;padding:0 12px;
+  border-radius:999px;
+  background:var(--grad);
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:900;
+  text-shadow:0 1px 2px rgba(0,0,0,.35);
+}
+.slider-track-row{display:flex;align-items:center;gap:14px}
+.slider-track-row > div:first-child{flex:1;width:100%}
+input[type=range]{
+  width:100%;display:block;margin:0;
+  -webkit-appearance:none;appearance:none;
+  height:4px;border-radius:999px;
+  background:var(--border);outline:none;cursor:pointer;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:18px;height:18px;border-radius:50%;
+  background:var(--teal);
+  border:2px solid var(--bg);
+  box-shadow:0 0 0 2px var(--teal-dark);
+  cursor:pointer;
+}
+input[type=range]::-moz-range-thumb{
+  width:18px;height:18px;border-radius:50%;
+  background:var(--teal);border:2px solid var(--bg);cursor:pointer;
+}
+input[type=range]{-webkit-tap-highlight-color:transparent}
+input[type=range]:focus{outline:none}
+.slider-ticks{display:flex;justify-content:space-between;padding:4px 0 0;font-size:10px;color:var(--muted2)}
+.slider-hint{font-size:12px;color:var(--muted);padding-top:2px}
+
+/* ── ERROR ── */
+.err-msg{max-width:860px;margin:12px auto 0;padding:0 40px;font-size:13px;color:#f28b8b;display:none;font-weight:600}
+.err-msg.visible{display:block}
+
+/* ── GENERATE BTN ── */
+.btn-section{max-width:860px;margin:20px auto 0;padding:0 40px}
+.btn-generate{
+  width:100%;padding:15px 24px;
+  border:none;border-radius:12px;
+  font-size:14px;font-weight:800;
+  letter-spacing:.04em;text-transform:uppercase;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--grad);color:#fff;
+  text-shadow:0 1px 3px rgba(0,0,0,.3);
+  transition:opacity .2s,transform .1s;
+  position:relative;overflow:hidden;
+}
+.btn-generate:hover{opacity:.88}
+.btn-generate:active{transform:scale(.99)}
+.btn-generate:disabled{opacity:.25;cursor:not-allowed}
+.btn-generate svg{width:19px;height:19px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 2px rgba(0,0,0,.3))}
+.progress-bar{height:3px;background:var(--border);border-radius:999px;margin-top:12px;overflow:hidden;display:none}
+.progress-bar.visible{display:block}
+.progress-fill{height:100%;width:0%;background:var(--grad);border-radius:999px;transition:width .3s}
+.status-text{font-size:11px;color:var(--muted);margin-top:6px;text-align:center;display:none;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.status-text.visible{display:block}
+
+/* ── PREVIEW SECTION ── */
+.preview-section{max-width:860px;margin:32px auto 0;padding:0 40px;display:none}
+.preview-section.visible{display:block}
+.preview-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:16px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--border);
+}
+.preview-header h2{
+  font-size:12px;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text);
+}
+.preview-header span{font-size:12px;color:var(--muted2)}
+.base-swatches{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.swatch-chip{
+  display:flex;align-items:center;gap:7px;
+  background:var(--surface);border:1px solid var(--border2);
+  border-radius:999px;padding:4px 12px 4px 5px;
+  font-size:11px;font-weight:700;color:var(--muted);
+  letter-spacing:.03em;
+}
+.swatch-dot{width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(255,255,255,.08);flex-shrink:0}
+.palette-preview{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+}
+.group-block{
+  border-radius:8px;overflow:hidden;
+  position:relative;cursor:default;
+  border:1px solid var(--border);
+}
+.group-block:hover .group-tooltip{opacity:1;transform:translateY(0)}
+.group-strip{display:flex;height:40px}
+.group-strip-cell{flex:1;height:100%}
+.group-tooltip{
+  position:absolute;inset:0;
+  background:rgba(17,16,16,.88);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:2px;padding:4px;
+  opacity:0;transform:translateY(4px);
+  transition:opacity .15s,transform .15s;
+  pointer-events:none;
+  border-radius:7px;
+}
+.group-tooltip-title{
+  font-size:9px;font-weight:800;color:var(--text);
+  letter-spacing:.06em;text-align:center;
+  text-transform:uppercase;line-height:1.3;
+}
+.group-tooltip-tag{
+  font-size:8px;color:var(--muted);
+  letter-spacing:.04em;text-align:center;
+}
+@media(max-width:640px){
+  .palette-preview{grid-template-columns:repeat(2,1fr);gap:4px}
+  .group-strip{height:32px}
+}
+
+/* ── SUCCESS CARD ── */
+.success-card{max-width:860px;margin:24px auto 60px;padding:0 40px;display:none}
+.success-card.visible{display:block}
+.success-inner{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:28px 32px;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+}
+.success-icon{
+  width:44px;height:44px;border-radius:10px;
+  background:rgba(91,191,196,.15);border:1px solid rgba(91,191,196,.2);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.success-icon svg{width:20px;height:20px}
+.success-text{text-align:center;}
+.success-text h3{font-size:14px;font-weight:800;margin-bottom:3px;color:var(--text)}
+.success-text p{font-size:12px;color:var(--muted)}
+.btn-download-group{display:flex;flex-direction:column;gap:8px;width:100%;}
+.btn-download{
+  padding:9px 16px;
+  background:var(--surface2);color:var(--text);
+  border:1px solid var(--border2);border-radius:8px;
+  font-size:12px;font-weight:800;cursor:pointer;
+  white-space:nowrap;letter-spacing:.03em;
+  transition:border-color .15s,background .15s;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.btn-download::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--grad);opacity:0;transition:opacity .15s;
+}
+.btn-download:hover{border-color:var(--teal);background:rgba(91,191,196,.08)}
+.btn-download:hover::after{opacity:1}
+
+/* ── UPLOAD FEEDBACK ── */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.upload-feedback{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.upload-thumb{width:56px;height:56px;object-fit:cover;border-radius:10px;border:1px solid var(--border2);flex-shrink:0}
+.upload-feedback-info{display:flex;flex-direction:column;gap:3px;text-align:left}
+.upload-file-name{font-size:13px;font-weight:800;color:var(--text);word-break:break-all;max-width:340px}
+.upload-file-status{font-size:11px;color:var(--teal);font-weight:700;letter-spacing:.04em}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .navbar{padding:0 16px}
+  .hero-inner{grid-template-columns:1fr;gap:24px;padding:32px 16px 28px}
+  .hero h1{font-size:28px}
+  .hero-stats{flex-direction:row;gap:8px}
+  .hero-stat{flex:1;min-width:0;padding:10px}
+  .hero-stat-n{font-size:20px}
+  .hero p{font-size:12px}
+  .upload-wrap{padding:0 16px;margin-top:24px}
+  .upload-tips{grid-template-columns:1fr}
+  .slider-wrap{padding:0 16px}
+  .btn-section{padding:0 16px;margin-bottom:40px}
+  .preview-section{padding:0 16px}
+  .success-card{padding:0 16px}
+  .success-inner{grid-template-columns:1fr;gap:16px}
+  .btn-download-group{justify-content:stretch}
+  .btn-download{width:100%;text-align:center}
+  .err-msg{padding:0 16px}
+  .drop-zone{padding:28px 16px 20px}
+  .upload-file-name{max-width:200px}
+  .upload-thumb{width:48px;height:48px}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="https://artcrav.github.io/palettegenerator/" class="navbar-brand"><span class="craving">Craving</span><span class="art">ART</span></a>
+  <a href="https://artcraving.my.id" class="navbar-home">
+    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Home
+  </a>
+</nav>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge"><span class="hero-badge-dot"></span>Generator Palet Warna</div>
+      <h1>Dari gambar<br><span class="grad-text">Jadi 416 warna.</span></h1>
+      <p>Upload foto, ilustrasi, atau mood board — sistem ekstrak warna dominan lalu generate 416 shades (52 grup × 8 warna) siap ekspor.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-n">416</div><div class="hero-stat-l">Warna</div></div>
+      <div class="hero-stat"><div class="hero-stat-n">52</div><div class="hero-stat-l">Grup</div></div>
+      <div class="hero-stat"><div class="hero-stat-n">4</div><div class="hero-stat-l">Format</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="upload-wrap">
+  <div class="drop-zone" id="dropZone">
+    <input type="file" id="fileInput" accept="image/*" aria-label="Upload gambar untuk diekstrak warnanya (PNG, JPG, atau WEBP)">
+    <div class="drop-icon">
+      <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+    </div>
+    <div id="uploadFeedback" class="upload-feedback" style="display:none">
+      <img id="uploadThumb" src="" alt="preview" class="upload-thumb">
+      <div class="upload-feedback-info">
+        <span id="uploadFileName" class="upload-file-name"></span>
+        <span class="upload-file-status">✓ Gambar siap diproses — klik untuk ganti</span>
+      </div>
+    </div>
+    <div id="uploadDefault">
+      <h3>Upload gambar apapun</h3>
+      <p>PNG, JPG, atau WEBP · Drag &amp; drop atau klik untuk pilih</p>
+    </div>
+    <div class="upload-tips">
+      <div class="tip-item"><span class="tip-dash">—</span><span>Foto dengan banyak warna beragam menghasilkan palette lebih kaya</span></div>
+      <div class="tip-item"><span class="tip-dash">—</span><span>Hindari foto gelap atau terlalu overexposed</span></div>
+      <div class="tip-item"><span class="tip-dash">—</span><span>Mood board, ilustrasi, atau foto alam sangat ideal</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="slider-wrap hidden" id="sliderWrap">
+  <div class="slider-inner">
+    <div class="slider-label-row">
+      <span class="slider-label-text">Jumlah warna diekstrak</span>
+      <div class="slider-badge" id="sliderBadge">6</div>
+    </div>
+    <div class="slider-track-row">
+      <div style="flex:1;min-width:0">
+        <label for="colorSlider" class="sr-only">Jumlah warna yang diekstrak</label>
+        <input type="range" id="colorSlider" min="4" max="12" value="6" step="1" aria-describedby="colorCount" aria-valuetext="6 warna">
+        <div class="slider-ticks">
+          <span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span>
+        </div>
+      </div>
+    </div>
+    <div class="slider-hint">
+      <span id="colorCount">Geser untuk mengubah jumlah warna yang diekstrak</span>
+    </div>
+  </div>
+</div>
+
+<div class="err-msg" id="errMsg"></div>
+
+<div class="btn-section" id="btnSection" style="margin-bottom:0">
+  <button class="btn-generate" id="btnGenerate" disabled aria-label="Buat dan ekspor palet warna dari gambar yang diupload">
+    <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="white"/><circle cx="17.5" cy="10.5" r=".5" fill="white"/><circle cx="8.5" cy="7.5" r=".5" fill="white"/><circle cx="6.5" cy="12.5" r=".5" fill="white"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+    Buat &amp; Ekspor
+  </button>
+  <div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Progress pembuatan palet warna"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="status-text" id="statusText"></div>
+</div>
+
+<div class="preview-section" id="previewSection">
+  <div class="preview-header">
+    <h2>Warna Terdeteksi</h2>
+  </div>
+  <div class="base-swatches" id="baseSwatches"></div>
+  <div class="palette-preview" id="palettePreview"></div>
+</div>
+
+<div class="success-card" id="successCard">
+  <div class="success-inner">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#5bbfc4" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div class="success-text">
+      <h3>Palet berhasil dibuat!</h3>
+      <p>416 warna · 52 grup · Gradasi, Campuran, Bayangan &amp; Highlight</p>
+    </div>
+    <div class="btn-download-group">
+      <button class="btn-download" id="btnDownload" title="Unduh sebagai dokumen PDF">PDF</button>
+      <button class="btn-download" id="btnDownloadIbis" title="Untuk Ibis Paint X">Ibis Paint (.ipcfg)</button>
+      <button class="btn-download" id="btnDownloadCLS" title="Untuk Clip Studio Paint">CSP (.cls)</button>
+      <button class="btn-download" id="btnDownloadSwatches" title="Untuk Procreate">Procreate (.swatches)</button>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+var jsPDF = window.jspdf.jsPDF;
+
+/* ============================================================
+   COLOUR MATH
+   ============================================================ */
+function hexToRgb(h) {
+  h = h.replace('#', '');
+  return [parseInt(h.slice(0,2),16), parseInt(h.slice(2,4),16), parseInt(h.slice(4,6),16)];
+}
+function rgbToHex(r, g, b) {
+  var cl = function(v){ return Math.min(255, Math.max(0, Math.round(v))); };
+  return '#' + [cl(r),cl(g),cl(b)].map(function(v){ return v.toString(16).padStart(2,'0'); }).join('').toUpperCase();
+}
+function hexToRGBA(hex){
+  hex = hex.replace('#','');
+  var r=parseInt(hex.substring(0,2),16);
+  var g=parseInt(hex.substring(2,4),16);
+  var b=parseInt(hex.substring(4,6),16);
+  return [r,g,b,255];
+}
+function lighten(h, f) { var c=hexToRgb(h); return rgbToHex(c[0]+(255-c[0])*f, c[1]+(255-c[1])*f, c[2]+(255-c[2])*f); }
+function darken(h, f)  { var c=hexToRgb(h); return rgbToHex(c[0]*(1-f), c[1]*(1-f), c[2]*(1-f)); }
+function mix(h1, h2, f) {
+  var a=hexToRgb(h1), b=hexToRgb(h2);
+  return rgbToHex(a[0]+(b[0]-a[0])*f, a[1]+(b[1]-a[1])*f, a[2]+(b[2]-a[2])*f);
+}
+function saturate(h, f) {
+  var c=hexToRgb(h), mn=Math.min(c[0],c[1],c[2]);
+  return rgbToHex(c[0]-(c[0]-mn)*f*.5, c[1]-(c[1]-mn)*f*.5, c[2]-(c[2]-mn)*f*.5);
+}
+function lightTint(h, f) { var c=hexToRgb(h); return rgbToHex(c[0]+(255-c[0])*f*.85, c[1]+(255-c[1])*f*.92, c[2]+(255-c[2])*f); }
+
+function shadeStrip(base, n) {
+  n = n || 10;
+  var out = [];
+  for (var i=0; i<n; i++) {
+    var t = i/(n-1);
+    out.push(t < 0.5 ? lighten(base, 0.85-t*1.2) : darken(base, (t-0.5)*1.6));
+  }
+  return out;
+}
+function shadowStrip(base, n) {
+  var out=[];
+  for(var i=0;i<n;i++) out.push(darken(saturate(base,0.1+i*.08),0.05+i*.09));
+  return out;
+}
+function lightStrip(base, n) {
+  var out=[];
+  for(var i=0;i<n;i++) out.push(lightTint(base,0.1+i*.09));
+  return out;
+}
+
+/* ============================================================
+   COLOUR EXTRACTION  (K-means++ with perceptual distance)
+   ============================================================ */
+function colDist(a, b) {
+  var dr=a[0]-b[0], dg=a[1]-b[1], db=a[2]-b[2];
+  return Math.sqrt(2*dr*dr + 4*dg*dg + 3*db*db);
+}
+
+function kmeansppInit(pts, k) {
+  var cs = [];
+  cs.push(pts[Math.floor(Math.random() * pts.length)]);
+  for (var i=1; i<k; i++) {
+    var weights = pts.map(function(p) {
+      var mn = Infinity;
+      for (var j=0; j<cs.length; j++) { var d=colDist(p,cs[j]); if(d<mn) mn=d; }
+      return mn * mn;
+    });
+    var tot = weights.reduce(function(a,b){return a+b;}, 0);
+    var rv = Math.random() * tot;
+    var chosen = pts[pts.length-1];
+    for (var j=0; j<weights.length; j++) { rv -= weights[j]; if(rv<=0){chosen=pts[j];break;} }
+    cs.push(chosen);
+  }
+  return cs;
+}
+
+function runKmeans(pts, k) {
+  var cents = kmeansppInit(pts, k);
+  for (var iter=0; iter<60; iter++) {
+    var clusters = [];
+    for (var i=0; i<k; i++) clusters.push({s:[0,0,0], n:0});
+    for (var pi=0; pi<pts.length; pi++) {
+      var p=pts[pi], bi=0, bd=Infinity;
+      for (var ki=0; ki<k; ki++) { var d=colDist(p,cents[ki]); if(d<bd){bd=d;bi=ki;} }
+      clusters[bi].s[0]+=p[0]; clusters[bi].s[1]+=p[1]; clusters[bi].s[2]+=p[2]; clusters[bi].n++;
+    }
+    var moved = false;
+    for (var ki=0; ki<k; ki++) {
+      if (clusters[ki].n > 0) {
+        var nr=clusters[ki].s[0]/clusters[ki].n, ng=clusters[ki].s[1]/clusters[ki].n, nb=clusters[ki].s[2]/clusters[ki].n;
+        if (colDist([nr,ng,nb], cents[ki]) > 0.5) moved = true;
+        cents[ki] = [nr, ng, nb];
+      }
+    }
+    if (!moved) break;
+  }
+  var inertia = 0;
+  for (var pi=0; pi<pts.length; pi++) {
+    var bd=Infinity;
+    for (var ki=0; ki<k; ki++) { var d=colDist(pts[pi],cents[ki]); if(d<bd) bd=d; }
+    inertia += bd*bd;
+  }
+  return { cents: cents, inertia: inertia };
+}
+
+function extractColors(imgEl, numColors) {
+  numColors = numColors || 6;
+
+  var W = Math.min(imgEl.naturalWidth  || imgEl.width,  300);
+  var H = Math.min(imgEl.naturalHeight || imgEl.height, 300);
+  var cv = document.createElement('canvas');
+  cv.width = W; cv.height = H;
+  var ctx = cv.getContext('2d');
+  ctx.drawImage(imgEl, 0, 0, W, H);
+
+  var px;
+  try { px = ctx.getImageData(0, 0, W, H).data; }
+  catch(e) { throw new Error('Tidak bisa membaca pixel gambar. Pastikan file lokal dan bukan dari URL.'); }
+
+  /* collect samples — prefer saturated, non-background pixels */
+  var coloured = [], full = [];
+  for (var i=0; i<px.length; i+=12) {   // sample every 3rd pixel
+    var r=px[i], g=px[i+1], b=px[i+2], a=px[i+3];
+    if (a < 100) continue;
+    full.push([r,g,b]);
+    var mn=Math.min(r,g,b), mx=Math.max(r,g,b);
+    var bright = mx/255;
+    var sat    = mx===0 ? 0 : (mx-mn)/mx;
+    // exclude near-white, near-black, near-grey
+    if (bright>0.08 && bright<0.96 && sat>0.08) coloured.push([r,g,b]);
+  }
+  var pts = coloured.length >= numColors*8 ? coloured : full;
+  if (pts.length === 0) throw new Error('Gambar tidak mengandung data warna yang valid.');
+
+  /* run k-means 3 times, keep best result */
+  var best = null;
+  for (var run=0; run<3; run++) {
+    var res = runKmeans(pts, numColors);
+    if (!best || res.inertia < best.inertia) best = res;
+  }
+
+  var hexColors = best.cents.map(function(c){ return rgbToHex(c[0],c[1],c[2]); });
+
+  /* deduplicate very similar colours */
+  var deduped = [];
+  for (var i=0; i<hexColors.length; i++) {
+    var rgb = hexToRgb(hexColors[i]);
+    var close = false;
+    for (var j=0; j<deduped.length; j++) { if(colDist(hexToRgb(deduped[j]),rgb)<22){close=true;break;} }
+    if (!close) deduped.push(hexColors[i]);
+  }
+  /* if too few, loosen threshold */
+  if (deduped.length < numColors) {
+    for (var i=0; i<hexColors.length; i++) {
+      if (deduped.length >= numColors) break;
+      var rgb = hexToRgb(hexColors[i]);
+      var close = false;
+      for (var j=0; j<deduped.length; j++) { if(colDist(hexToRgb(deduped[j]),rgb)<12){close=true;break;} }
+      if (!close) deduped.push(hexColors[i]);
+    }
+  }
+
+  return deduped.slice(0, numColors);
+}
+
+/* ============================================================
+   BUILD PALETTE GROUPS
+   ============================================================ */
+function buildGroups(bases) {
+  /* Produces exactly 52 groups × 8 colors = 416 colors.
+     Key: 8 colors/group = 1 row in Ibis Paint (8-column palette).
+     So each group maps to exactly 1 row — palette stays ordered!
+     Template has 418 slots: 416 filled + 2 black at end.
+     Works for any bases length 4–12. */
+  var N = 8; /* colors per group = Ibis columns */
+  var n = bases.length;
+  var arr = function(fn){ var o=[]; for(var i=0;i<N;i++) o.push(fn(i)); return o; };
+  var g = [];
+  var lbl = function(i){ return String(i+1).padStart(2,'0'); };
+  var chr = function(i){ return String.fromCharCode(65 + (i % 26)); };
+
+  /* ── BLOCK 1: G01–G04 Shade strips for first 4 bases ── */
+  for (var i=0; i<4; i++) {
+    var b = bases[i % n];
+    g.push({ title: lbl(g.length) + ' · Shade Strip ' + chr(i), tag:'Primer · Light → Dark', colors: shadeStrip(b, N) });
+  }
+
+  /* G05–G06: Blend of base[0]+base[1], base[2]+base[3] */
+  (function(){
+    var A=bases[0], B=bases[Math.min(1,n-1)];
+    g.push({ title: lbl(g.length)+' · '+chr(0)+'+'+chr(1)+' Blend', tag:'Sekunder · Mix', colors: arr(function(i){return mix(A,B,i/7);}) });
+    var C=bases[Math.min(2,n-1)], D=bases[Math.min(3,n-1)];
+    g.push({ title: lbl(g.length)+' · '+chr(2)+'+'+chr(3)+' Blend', tag:'Sekunder · Mix', colors: arr(function(i){return mix(C,D,i/7);}) });
+  })();
+
+  /* G07: Diagonal blend A+D */
+  (function(){
+    var A=bases[0], D=bases[Math.min(3,n-1)];
+    g.push({ title: lbl(g.length)+' · '+chr(0)+'+'+chr(3)+' Diagonal', tag:'Sekunder · Mix Diagonal', colors: arr(function(i){return mix(A,D,i/7);}) });
+  })();
+
+  /* G08: Full-spectrum blend */
+  (function(){
+    var A=bases[0],B=bases[Math.min(1,n-1)],C=bases[Math.min(2,n-1)],D=bases[Math.min(3,n-1)];
+    g.push({ title: lbl(g.length)+' · Full Spectrum', tag:'Sekunder · All Anchors', colors: arr(function(i){return mix(mix(A,B,i/7),mix(C,D,i/7),0.5);}) });
+  })();
+
+  /* G09: Shadow Multiply */
+  (function(){
+    var A=bases[0],C=bases[Math.min(2,n-1)],D=bases[Math.min(3,n-1)];
+    g.push({ title: lbl(g.length)+' · Shadow Multiply', tag:'Overlay · Bayangan', colors: shadowStrip(A,3).concat(shadowStrip(C,3)).concat(shadowStrip(D,2)) });
+  })();
+
+  /* G10: Light Highlight */
+  (function(){
+    var A=bases[0],B=bases[Math.min(1,n-1)],C=bases[Math.min(2,n-1)],D=bases[Math.min(3,n-1)];
+    g.push({ title: lbl(g.length)+' · Light Highlight', tag:'Overlay · Cahaya', colors: lightStrip(A,2).concat(lightStrip(B,2)).concat(lightStrip(C,2)).concat(lightStrip(D,2)) });
+  })();
+
+  /* ── BLOCK 2: G11–G14 Shade strips for next 4 bases ── */
+  for (var i=0; i<4; i++) {
+    var b = bases[(4 + i) % n];
+    g.push({ title: lbl(g.length)+' · Shade Strip '+chr(4+i), tag:'Extd · Light → Dark', colors: shadeStrip(b, N) });
+  }
+
+  /* G15–G16: Blend pairs from extended bases */
+  (function(){
+    var E=bases[Math.min(4,n-1)], F=bases[Math.min(5,n-1)];
+    g.push({ title: lbl(g.length)+' · '+chr(4)+'+'+chr(5)+' Blend', tag:'Extd · Mix', colors: arr(function(i){return mix(E,F,i/7);}) });
+    var G2=bases[6%n], H=bases[7%n];
+    g.push({ title: lbl(g.length)+' · '+chr(6)+'+'+chr(7)+' Blend', tag:'Extd · Mix', colors: arr(function(i){return mix(G2,H,i/7);}) });
+  })();
+
+  /* G17: Warm–Cool contrast */
+  (function(){
+    var warm=bases[0], cool=bases[Math.min(Math.floor(n/2),n-1)];
+    g.push({ title: lbl(g.length)+' · Warm ↔ Cool', tag:'Kontras · Suhu Warna', colors: arr(function(i){return mix(warm,cool,i/7);}) });
+  })();
+
+  /* G18: Triadic blend */
+  (function(){
+    var A=bases[0], M=bases[Math.floor(n/3)%n], Z=bases[Math.floor(2*n/3)%n];
+    g.push({ title: lbl(g.length)+' · Triadic Spectrum', tag:'Extd · 3-Point Mix', colors: arr(function(i){
+      var t=i/7;
+      return t<0.5 ? mix(A,M,t*2) : mix(M,Z,(t-0.5)*2);
+    })});
+  })();
+
+  /* G19: Deep Shadow */
+  (function(){
+    g.push({ title: lbl(g.length)+' · Deep Shadow', tag:'Overlay · Shadow Dalam', colors:
+      arr(function(i){ return darken(saturate(bases[i%n],0.3),0.15+i*0.08); })
+    });
+  })();
+
+  /* G20: Pastel Tint */
+  (function(){
+    g.push({ title: lbl(g.length)+' · Pastel Tint', tag:'Overlay · Highlight Pastel', colors:
+      arr(function(i){ return lighten(bases[i%n], 0.55+i*0.05); })
+    });
+  })();
+
+  /* ── BLOCK 3: G21–G24 Shade strips (offset 8) ── */
+  for (var i=0; i<4; i++) {
+    var b = bases[(8 + i) % n];
+    g.push({ title: lbl(g.length)+' · Shade Strip '+chr(8+i), tag:'Extd2 · Light → Dark', colors: shadeStrip(b, N) });
+  }
+
+  /* G25–G26: More blend pairs */
+  (function(){
+    var A=bases[8%n], B=bases[9%n];
+    g.push({ title: lbl(g.length)+' · '+chr(8)+'+'+chr(9)+' Blend', tag:'Extd2 · Mix', colors: arr(function(i){return mix(A,B,i/7);}) });
+    var C=bases[10%n], D=bases[11%n];
+    g.push({ title: lbl(g.length)+' · '+chr(10)+'+'+chr(11)+' Blend', tag:'Extd2 · Mix', colors: arr(function(i){return mix(C,D,i/7);}) });
+  })();
+
+  /* G27: Reverse spectrum */
+  (function(){
+    var A=bases[n-1], B=bases[0];
+    g.push({ title: lbl(g.length)+' · Reverse Spectrum', tag:'Extd2 · Reverse Mix', colors: arr(function(i){return mix(A,B,i/7);}) });
+  })();
+
+  /* G28: Muted tones */
+  (function(){
+    g.push({ title: lbl(g.length)+' · Muted Tones', tag:'Extd2 · Desaturated', colors:
+      arr(function(i){ return saturate(bases[i%n], 0.5); })
+    });
+  })();
+
+  /* G29: Deep tint */
+  (function(){
+    g.push({ title: lbl(g.length)+' · Deep Tint', tag:'Extd2 · Ultra Dark', colors:
+      arr(function(i){ return darken(bases[i%n], 0.5+i*0.04); })
+    });
+  })();
+
+  /* G30: Bright highlight */
+  (function(){
+    g.push({ title: lbl(g.length)+' · Bright Highlight', tag:'Extd2 · Ultra Light', colors:
+      arr(function(i){ return lighten(bases[i%n], 0.7+i*0.03); })
+    });
+  })();
+
+  /* G31–G34: Shade variants */
+  for (var i=0; i<4; i++) {
+    var b = bases[(i*3) % n];
+    g.push({ title: lbl(g.length)+' · Shade Variant '+chr(i), tag:'Var · Light → Dark', colors: shadeStrip(b, N) });
+  }
+
+  /* G35–G36: Cross blends */
+  (function(){
+    var A=bases[0], B=bases[Math.min(2,n-1)];
+    g.push({ title: lbl(g.length)+' · Cross Blend A×C', tag:'Var · Cross Mix', colors: arr(function(i){return mix(A,B,i/7);}) });
+    var C=bases[Math.min(1,n-1)], D=bases[Math.min(3,n-1)%n];
+    g.push({ title: lbl(g.length)+' · Cross Blend B×D', tag:'Var · Cross Mix', colors: arr(function(i){return mix(C,D,i/7);}) });
+  })();
+
+  /* G37: Warm shadow */
+  (function(){
+    var warm=bases[0];
+    g.push({ title: lbl(g.length)+' · Warm Shadow', tag:'Var · Warm Dark', colors:
+      arr(function(i){ return darken(mix(warm, bases[Math.min(1,n-1)], 0.3), 0.1+i*0.1); })
+    });
+  })();
+
+  /* G38: Cool highlight */
+  (function(){
+    var cool=bases[Math.min(Math.floor(n/2),n-1)];
+    g.push({ title: lbl(g.length)+' · Cool Highlight', tag:'Var · Cool Light', colors:
+      arr(function(i){ return lighten(mix(cool, bases[0], 0.3), 0.1+i*0.1); })
+    });
+  })();
+
+  /* G39: Mid-tone blend */
+  (function(){
+    g.push({ title: lbl(g.length)+' · Mid Tone', tag:'Var · Neutral Mix', colors:
+      arr(function(i){ return mix(bases[i%n], '#888888', 0.3+i*0.05); })
+    });
+  })();
+
+  /* G40: Vivid accent */
+  (function(){
+    g.push({ title: lbl(g.length)+' · Vivid Accent', tag:'Var · Vibrant', colors:
+      arr(function(i){ return lighten(saturate(bases[i%n],-0.2), 0.15+i*0.06); })
+    });
+  })();
+
+  /* G41: Dusk blend */
+  (function(){
+    g.push({ title: lbl(g.length)+' · Dusk Blend', tag:'Var · Dusk Warm', colors:
+      arr(function(i){ return mix(bases[i%n], '#3D2B1F', 0.2+i*0.07); })
+    });
+  })();
+
+  /* G42: Dawn blend */
+  (function(){
+    g.push({ title: lbl(g.length)+' · Dawn Blend', tag:'Var · Dawn Cool', colors:
+      arr(function(i){ return mix(bases[i%n], '#E8F0F5', 0.2+i*0.07); })
+    });
+  })();
+
+  /* ── BLOCK 4: G43–G52 (10 more groups to reach 52 total) ── */
+
+  /* G43–G46: More shade strips cycling all bases */
+  for (var i=0; i<4; i++) {
+    var b = bases[(i*2+1) % n];
+    g.push({ title: lbl(g.length)+' · Shade Extra '+chr(i), tag:'Ext3 · Light → Dark', colors: shadeStrip(b, N) });
+  }
+
+  /* G47: Sunset blend (warm orange-red mix) */
+  (function(){
+    var A=bases[0], B=bases[Math.min(2,n-1)];
+    g.push({ title: lbl(g.length)+' · Sunset Blend', tag:'Ext3 · Warm Gradient', colors:
+      arr(function(i){ return mix(darken(A,0.1), lighten(B,0.2), i/7); })
+    });
+  })();
+
+  /* G48: Ocean blend (cool blue-teal mix) */
+  (function(){
+    var A=bases[Math.min(1,n-1)], B=bases[Math.min(3,n-1)];
+    g.push({ title: lbl(g.length)+' · Ocean Blend', tag:'Ext3 · Cool Gradient', colors:
+      arr(function(i){ return mix(lighten(A,0.15), darken(B,0.1), i/7); })
+    });
+  })();
+
+  /* G49: Earth tones */
+  (function(){
+    g.push({ title: lbl(g.length)+' · Earth Tones', tag:'Ext3 · Natural', colors:
+      arr(function(i){ return mix(bases[i%n], '#8B6347', 0.35+i*0.04); })
+    });
+  })();
+
+  /* G50: Neon accent */
+  (function(){
+    g.push({ title: lbl(g.length)+' · Neon Accent', tag:'Ext3 · Vivid', colors:
+      arr(function(i){ return lighten(saturate(bases[i%n], -0.5), 0.05+i*0.07); })
+    });
+  })();
+
+  /* G51: Ink wash (dark desaturated) */
+  (function(){
+    g.push({ title: lbl(g.length)+' · Ink Wash', tag:'Ext3 · Dark Muted', colors:
+      arr(function(i){ return mix(darken(bases[i%n], 0.4), '#1A1A2E', 0.2+i*0.07); })
+    });
+  })();
+
+  /* G52: Fog highlight (light desaturated) */
+  (function(){
+    g.push({ title: lbl(g.length)+' · Fog Highlight', tag:'Ext3 · Light Muted', colors:
+      arr(function(i){ return mix(lighten(bases[i%n], 0.5), '#F0F4F8', 0.2+i*0.07); })
+    });
+  })();
+
+  return g; /* exactly 52 groups × 8 = 416 colors */
+}
+
+/* ============================================================
+   DOM
+   ============================================================ */
+var dropZone       = document.getElementById('dropZone');
+var fileInput      = document.getElementById('fileInput');
+var previewSec     = document.getElementById('previewSection');
+var baseSwatchEl   = document.getElementById('baseSwatches');
+var palettePreviewEl = document.getElementById('palettePreview');
+var btnGenerate    = document.getElementById('btnGenerate');
+var progressBar    = document.getElementById('progressBar');
+var progressFill   = document.getElementById('progressFill');
+var statusText     = document.getElementById('statusText');
+var successCard    = document.getElementById('successCard');
+var colorCountEl   = document.getElementById('colorCount');
+var errMsg         = document.getElementById('errMsg');
+
+var extractedBases = [], pdfBlob = null;
+var numColorsSelected = 6;
+
+/* slider logic */
+var colorSlider = document.getElementById('colorSlider');
+var sliderBadge = document.getElementById('sliderBadge');
+function updateSlider() {
+  numColorsSelected = parseInt(colorSlider.value);
+  sliderBadge.textContent = numColorsSelected;
+  colorSlider.setAttribute('aria-valuetext', numColorsSelected + ' warna');
+  var pct = (numColorsSelected - 4) / (12 - 4) * 100;
+  // gradient matches hero top strip: teal → cream → peach → pink
+  var p1 = pct * 0.33, p2 = pct * 0.66;
+  colorSlider.style.background = 'linear-gradient(90deg, #5bbfc4 0%, #9AE2E6 '+p1.toFixed(1)+'%, #f7a0a0 '+p2.toFixed(1)+'%, #FAB1B1 '+pct.toFixed(1)+'%, #2a2826 '+pct.toFixed(1)+'%)';
+  // re-extract if image already loaded
+  if (extractedBases.length > 0 && _lastImg) {
+    try {
+      var bases = extractColors(_lastImg, numColorsSelected);
+      if (bases.length >= 2) { extractedBases = bases; showPreview(extractedBases); }
+    } catch(e) {}
+  }
+}
+colorSlider.addEventListener('input', updateSlider);
+updateSlider();
+var _lastImg = null;
+
+function showError(msg)  { errMsg.textContent=msg; errMsg.classList.add('visible'); }
+function clearError()    { errMsg.classList.remove('visible'); }
+function tick(ms)        { return new Promise(function(r){ setTimeout(r,ms); }); }
+
+/* drag & drop */
+dropZone.addEventListener('dragover',  function(e){ e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', function(){ dropZone.classList.remove('drag-over'); });
+dropZone.addEventListener('drop', function(e){
+  e.preventDefault(); dropZone.classList.remove('drag-over'); resetUploadUI();
+  if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', function(){
+  if (fileInput.files[0]) { resetUploadUI(); handleFile(fileInput.files[0]); }
+});
+
+function handleFile(file) {
+  clearError();
+  if (!file.type.startsWith('image/')) { showError('File harus berupa gambar (PNG, JPG, WEBP).'); return; }
+  var reader = new FileReader();
+  reader.onerror = function(){ showError('Gagal membaca file.'); };
+  reader.onload = function(ev) {
+    var img = new Image();
+    img.onerror = function(){ showError('Gagal memuat gambar. Coba file lain.'); };
+    img.onload = function() {
+      try {
+        _lastImg = img;
+
+        /* ── Show thumbnail feedback ── */
+        var thumb = document.getElementById('uploadThumb');
+        var nameEl = document.getElementById('uploadFileName');
+        var feedback = document.getElementById('uploadFeedback');
+        var uploadDefault = document.getElementById('uploadDefault');
+        thumb.src = ev.target.result;
+        nameEl.textContent = file.name;
+        feedback.style.display = 'flex';
+        uploadDefault.style.display = 'none';
+        /* collapse drop zone padding after upload */
+        document.getElementById('dropZone').style.padding = '16px 24px';
+        document.querySelector('.upload-tips').style.display = 'none';
+
+        /* ── Reveal slider after upload ── */
+        document.getElementById('sliderWrap').classList.remove('hidden');
+
+        /* ── Auto scroll to slider then preview ── */
+        setTimeout(function() {
+          document.getElementById('sliderWrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+
+        var bases = extractColors(img, numColorsSelected);
+        if (bases.length < 2) throw new Error('Kurang dari 2 warna berbeda terdeteksi. Coba gambar dengan warna yang lebih kontras.');
+        extractedBases = bases;
+        showPreview(extractedBases);
+      } catch(e) {
+        showError(e.message || 'Error memproses gambar.');
+      }
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function resetUploadUI() {
+  document.querySelector('.upload-wrap').classList.remove('hidden');
+  document.getElementById('sliderWrap').classList.add('hidden');
+  /* reset thumbnail feedback */
+  document.getElementById('uploadFeedback').style.display = 'none';
+  document.getElementById('uploadDefault').style.display = 'block';
+  document.getElementById('uploadThumb').src = '';
+  document.getElementById('dropZone').style.padding = '';
+  document.querySelector('.upload-tips').style.display = '';
+}
+
+function showPreview(bases) {
+  baseSwatchEl.innerHTML = bases.map(function(h) {
+    return '<div class="swatch-chip"><div class="swatch-dot" style="background:'+h+'"></div>'+h+'</div>';
+  }).join('');
+  colorCountEl.textContent = bases.length + ' warna berhasil diekstrak dari gambar';
+
+  var groups = buildGroups(bases);
+  palettePreviewEl.innerHTML = groups.map(function(g) {
+    return '<div class="group-block">'
+      + '<div class="group-strip">'
+      + g.colors.map(function(h){
+          return '<div class="group-strip-cell" style="background:' + h + '"></div>';
+        }).join('')
+      + '</div>'
+      + '<div class="group-tooltip">'
+      + '<div class="group-tooltip-title">' + g.title + '</div>'
+      + '<div class="group-tooltip-tag">' + g.tag + '</div>'
+      + '</div>'
+      + '</div>';
+  }).join('');
+
+  previewSec.classList.add('visible');
+  btnGenerate.disabled = false;
+  successCard.classList.remove('visible');
+}
+
+/* ============================================================
+   PDF GENERATION  —  2 pages A4, 10 groups/page, 200 colors
+   ============================================================ */
+function setProgress(pct, msg) { progressFill.style.width=pct+'%'; progressBar.setAttribute('aria-valuenow', Math.round(pct)); statusText.textContent=msg; }
+
+function drawPageHeader(doc, bases, pageNum, PW) {
+  var barCount = Math.min(bases.length, 12);
+  for (var bi=0; bi<barCount; bi++) {
+    var bc = hexToRgb(bases[bi]);
+    doc.setFillColor(bc[0], bc[1], bc[2]);
+    doc.rect(bi*(PW/barCount), 0, PW/barCount, 6, 'F');
+  }
+  doc.setFont('helvetica','bold');
+  doc.setFontSize(17); doc.setTextColor(34,37,34);
+  doc.text('Palet Warna  \xB7  416 Warna  \xB7  Halaman '+pageNum+'/4', PW/2, 26, {align:'center'});
+
+  doc.setFont('helvetica','normal');
+  doc.setFontSize(8); doc.setTextColor(150,150,150);
+  var baseLabel = bases.slice(0,8).join('  \xB7  ') + (bases.length>8 ? '  \xB7  ...' : '');
+  doc.text('Base:  '+baseLabel, PW/2, 38, {align:'center'});
+
+  /* swatch strip */
+  var maxSw = bases.length;
+  var sw = Math.min(52, (PW - 40 - (maxSw-1)*4) / maxSw);
+  var sg = 4, sh = 11;
+  var stx = (PW - maxSw*(sw+sg) + sg) / 2;
+  for (var si=0; si<maxSw; si++) {
+    var sc = hexToRgb(bases[si]);
+    doc.setFillColor(sc[0], sc[1], sc[2]);
+    doc.roundedRect(stx+si*(sw+sg), 44, sw, sh, 2, 2, 'F');
+    doc.setFontSize(5.5); doc.setTextColor(80,80,80);
+    doc.text(bases[si], stx+si*(sw+sg)+sw/2, 44+sh+6.5, {align:'center'});
+  }
+  doc.setDrawColor(220,220,220); doc.setLineWidth(0.4);
+  doc.line(20, 68, PW-20, 68);
+}
+
+function drawPageFooter(doc, pageNum, PW, PH) {
+  doc.setFont('helvetica','normal');
+  doc.setFontSize(6.5); doc.setTextColor(190,190,190);
+  doc.text('Generator Palet Warna \xB7 416 Warna  |  Gradasi \xB7 Campuran \xB7 Bayangan \xB7 Highlight  |  '+pageNum+'/4', PW/2, PH-6, {align:'center'});
+}
+
+function drawGroups(doc, groups, PW, PH) {
+  var HDR = 72, FTR = 16;
+  var ROWS = groups.length; // dynamic per page
+  var COLS = 8;
+  var RH = (PH - HDR - FTR) / ROWS;
+  var CW = PW / (COLS + 2); /* +2 for label margin */
+  var LABEL_W = CW * 2;
+  var CR = Math.min(11, RH * 0.36);
+
+  for (var gi=0; gi<groups.length; gi++) {
+    var g = groups[gi];
+    var rt = HDR + gi * RH;
+
+    if (gi % 2 === 0) {
+      doc.setFillColor(250, 249, 247);
+      doc.rect(0, rt, PW, RH, 'F');
+    }
+    var ly = rt + 9;
+    doc.setFont('helvetica','bold');
+    doc.setFontSize(6.5); doc.setTextColor(60,60,60);
+    doc.text(g.title, 10, ly);
+    doc.setFont('helvetica','normal');
+    doc.setFontSize(5.5); doc.setTextColor(160,160,160);
+    doc.text(g.tag, PW-10, ly, {align:'right'});
+
+    var cy = rt + 14 + CR;
+    for (var ci=0; ci<Math.min(g.colors.length, COLS); ci++) {
+      var h = g.colors[ci];
+      var cx = LABEL_W + CW*ci + CW/2;
+      doc.setFillColor(210,210,210);
+      doc.circle(cx+0.8, cy+0.8, CR, 'F');
+      var cc = hexToRgb(h);
+      doc.setFillColor(cc[0], cc[1], cc[2]);
+      doc.setDrawColor(255,255,255);
+      doc.setLineWidth(1.0);
+      doc.circle(cx, cy, CR, 'FD');
+      doc.setFont('helvetica','normal');
+      doc.setFontSize(4.5); doc.setTextColor(100,100,100);
+      doc.text(h, cx, cy+CR+5.5, {align:'center'});
+    }
+    doc.setDrawColor(232,232,232); doc.setLineWidth(0.3);
+    doc.line(6, rt+RH, PW-6, rt+RH);
+  }
+}
+
+async function generatePDF(bases) {
+  progressBar.classList.add('visible');
+  statusText.classList.add('visible');
+  btnGenerate.disabled = true;
+  successCard.classList.remove('visible');
+  clearError();
+
+  await tick(50);  setProgress(5,  'Menyiapkan 420 warna...');
+  await tick(80);
+
+  var doc = new jsPDF({ orientation:'portrait', unit:'pt', format:'a4' });
+  var PW=595.28, PH=841.89;
+  var allGroups = buildGroups(bases); /* always 52 groups */
+
+  /* ── Page 1: groups 0–12 (13 groups) ── */
+  setProgress(15, 'Menggambar halaman 1...');
+  await tick(50);
+  drawPageHeader(doc, bases, 1, PW);
+  drawGroups(doc, allGroups.slice(0,13), PW, PH);
+  drawPageFooter(doc, 1, PW, PH);
+
+  setProgress(35, 'Menggambar halaman 2...');
+  await tick(60);
+
+  /* ── Page 2: groups 13–25 (13 groups) ── */
+  doc.addPage();
+  drawPageHeader(doc, bases, 2, PW);
+  drawGroups(doc, allGroups.slice(13,26), PW, PH);
+  drawPageFooter(doc, 2, PW, PH);
+
+  setProgress(55, 'Menggambar halaman 3...');
+  await tick(60);
+
+  /* ── Page 3: groups 26–38 (13 groups) ── */
+  doc.addPage();
+  drawPageHeader(doc, bases, 3, PW);
+  drawGroups(doc, allGroups.slice(26,39), PW, PH);
+  drawPageFooter(doc, 3, PW, PH);
+
+  setProgress(75, 'Menggambar halaman 4...');
+  await tick(60);
+
+  /* ── Page 4: groups 39–51 (13 groups) ── */
+  doc.addPage();
+  drawPageHeader(doc, bases, 4, PW);
+  drawGroups(doc, allGroups.slice(39,52), PW, PH);
+  drawPageFooter(doc, 4, PW, PH);
+
+  setProgress(92, 'Finalisasi PDF...');
+  await tick(80);
+  setProgress(98, 'Menyimpan...');
+  await tick(50);
+
+  pdfBlob = doc.output('blob');
+  setProgress(100, 'Selesai!');
+
+  setTimeout(function(){
+    progressBar.classList.remove('visible');
+    statusText.classList.remove('visible');
+    successCard.classList.add('visible');
+    btnGenerate.disabled = false;
+    successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 600);
+}
+
+btnGenerate.addEventListener('click', function(){
+  if (extractedBases.length > 0){
+    previewSection.classList.remove('visible');
+    generatePDF(extractedBases);
+  }
+});
+
+function setDownloadLoading(btn, loading) {
+  btn.disabled = loading;
+  if (loading) {
+    btn._origText = btn.textContent;
+    btn.textContent = 'Mengunduh…';
+    btn.style.opacity = '0.6';
+  } else {
+    btn.textContent = btn._origText || btn.textContent;
+    btn.style.opacity = '';
+  }
+}
+
+document.getElementById('btnDownload').addEventListener('click', function(){
+  if (!pdfBlob) return;
+  var btn = this;
+  setDownloadLoading(btn, true);
+  setTimeout(function(){
+    var url = URL.createObjectURL(pdfBlob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'color_palette_420shades.pdf';
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    setDownloadLoading(btn, false);
+  }, 100);
+});
+
+  async function exportIPCFG(groups) {
+  // Collect all colors: 52 groups x 8 = 416 colors.
+  // PDF: baris = group (52 baris), kolom = shade (8 kolom).
+  //
+  // Ibis Paint menyimpan slot dalam urutan TERBALIK:
+  //   slot 415 = baris 0 col 0 (kiri atas)
+  //   slot 414 = baris 0 col 1
+  //   ...
+  //   slot 408 = baris 0 col 7
+  //   slot 407 = baris 1 col 0
+  //   ...
+  //   slot 0   = baris 51 col 7 (kanan bawah)
+  //
+  // Jadi: kumpulkan row-major lalu reverse seluruh array.
+  const ROWS = groups.length;  // 52
+  const COLS = 8;
+  let allColors = [];
+  // Slot 0 di template = baris paling ATAS ibis Paint (grup 1).
+  // Isi urutan normal: row 0→51, col 0→7.
+  for (let row = 0; row < ROWS; row++) {
+    for (let col = 0; col < COLS; col++) {
+      allColors.push(groups[row].colors[col]);
+    }
+  }
+  // allColors.length === 416
+
+  // Load template and decompress (raw deflate, skip 4-byte "IPCF" header)
+  let res = await fetch("assets/template.ipcfg");
+  let buffer = await res.arrayBuffer();
+  let compressed = new Uint8Array(buffer);
+
+  // Decompress using DecompressionStream (raw deflate)
+  let rawDeflate = compressed.slice(4);
+  let ds = new DecompressionStream("deflate-raw");
+  let writer = ds.writable.getWriter();
+  writer.write(rawDeflate);
+  writer.close();
+  let decompressed = await new Response(ds.readable).arrayBuffer();
+  let dec = new Uint8Array(decompressed);
+
+  // Find all color entries using pattern: 03 00 03 01 00 00 00 05 01 [R][G][B] ff ff ff ff
+  const PATTERN = [0x03, 0x00, 0x03, 0x01, 0x00, 0x00, 0x00, 0x05, 0x01];
+  let positions = [];
+  for (let i = 0; i < dec.length - 17; i++) {
+    let match = true;
+    for (let j = 0; j < PATTERN.length; j++) {
+      if (dec[i+j] !== PATTERN[j]) { match = false; break; }
+    }
+    if (match && dec[i+12] === 0xff && dec[i+13] === 0xff && dec[i+14] === 0xff && dec[i+15] === 0xff) {
+      positions.push(i);
+      i += 16; // skip ahead
+    }
+  }
+
+  // Write colors into the decompressed buffer
+  // Template has 418 slots: fill first 416 with palette colors, last 2 = black
+  const TOTAL_SLOTS = 416;
+  let modified = new Uint8Array(dec);
+  for (let i = 0; i < positions.length; i++) {
+    let idx = positions[i];
+    if (i < TOTAL_SLOTS && i < allColors.length) {
+      let rgb = hexToRgb(allColors[i]);
+      modified[idx+9]  = rgb[0];
+      modified[idx+10] = rgb[1];
+      modified[idx+11] = rgb[2];
+    } else {
+      // last 2 slots: black
+      modified[idx+9]  = 0;
+      modified[idx+10] = 0;
+      modified[idx+11] = 0;
+    }
+  }
+
+  // Recompress with raw deflate
+  let cs = new CompressionStream("deflate-raw");
+  let w2 = cs.writable.getWriter();
+  w2.write(modified);
+  w2.close();
+  let recompressed = await new Response(cs.readable).arrayBuffer();
+
+  // Reconstruct: "IPCF" header + raw deflate body
+  let ipcfHeader = new Uint8Array([0x49, 0x50, 0x43, 0x46]); // "IPCF"
+  let finalBytes = new Uint8Array(4 + recompressed.byteLength);
+  finalBytes.set(ipcfHeader, 0);
+  finalBytes.set(new Uint8Array(recompressed), 4);
+
+  // Download
+  let blob = new Blob([finalBytes], { type: "application/octet-stream" });
+  let a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "palette.ipcfg";
+  a.click();
+}
+
+document.getElementById("btnDownloadIbis").addEventListener("click", function() {
+  if (!extractedBases.length) return;
+  var btn = this;
+  setDownloadLoading(btn, true);
+  setTimeout(function(){
+    let groups = buildGroups(extractedBases);
+    exportIPCFG(groups);
+    setDownloadLoading(btn, false);
+  }, 100);
+});
+
+/* ============================================================
+   EXPORT CLIP STUDIO PAINT (.cls) COLOR SET
+   Struktur header (dari reverse engineering test.cls):
+     [0x00] 4 bytes  : magic "SLCC"
+     [0x04] 4 bytes  : version/flags  00 01 10 00
+     [0x08] 2 bytes  : padding        00 00
+     [0x0A] uint16LE : internal name length
+     [0x0C] N bytes  : internal name (ASCII)
+     [0x0C+N] 4 bytes: padding        00 00 00 00
+     [0x10+N] uint16LE: display name length
+     [0x12+N] M bytes: display name (ASCII)
+     next   uint32LE : unknown field = 04 00 00 00
+     next   uint32LE : num_colors
+     next   uint32LE : data_size = num_colors * 12
+     then per-color 12 bytes:
+              08 00 00 00  R  G  B  FF  00 00 00 00
+============================================================ */
+function exportCLS(groups) {
+  var name = 'palette';
+  var nameBytes = [];
+  for (var ci = 0; ci < name.length; ci++) nameBytes.push(name.charCodeAt(ci));
+  var nameLen = nameBytes.length;
+
+  var allColors = [];
+  for (var r = 0; r < groups.length; r++) {
+    for (var c = 0; c < groups[r].colors.length; c++) {
+      allColors.push(groups[r].colors[c]);
+    }
+  }
+  var numColors = allColors.length;
+  var dataSize  = numColors * 12;
+
+  var headerSize = 4 + 4 + 2 + 2 + nameLen + 4 + 2 + nameLen + 4 + 4 + 4;
+  var totalSize  = headerSize + dataSize;
+
+  var buf = new Uint8Array(totalSize);
+  var off = 0;
+
+  function writeU8(v)    { buf[off++] = v & 0xFF; }
+  function writeU16LE(v) { buf[off++]=v&0xFF; buf[off++]=(v>>8)&0xFF; }
+  function writeU32LE(v) { buf[off++]=v&0xFF; buf[off++]=(v>>8)&0xFF; buf[off++]=(v>>16)&0xFF; buf[off++]=(v>>24)&0xFF; }
+  function writeBytes(arr) { for (var i=0;i<arr.length;i++) buf[off++]=arr[i]; }
+  function writePad(n) { for (var i=0;i<n;i++) buf[off++]=0; }
+
+  writeBytes([0x53,0x4C,0x43,0x43]);    // "SLCC"
+  writeBytes([0x00,0x01,0x10,0x00]);    // version/flags
+  writeU8(0); writeU8(0);               // padding
+  writeU16LE(nameLen);                  // internal name len
+  writeBytes(nameBytes);                // internal name
+  writePad(4);                          // padding
+  writeU16LE(nameLen);                  // display name len
+  writeBytes(nameBytes);                // display name
+  writeU32LE(4);                        // unknown field
+  writeU32LE(numColors);                // num_colors
+  writeU32LE(dataSize);                 // data_size
+
+  for (var i = 0; i < numColors; i++) {
+    var rgb = hexToRgb(allColors[i]);
+    writeU32LE(8);
+    writeU8(rgb[0]);
+    writeU8(rgb[1]);
+    writeU8(rgb[2]);
+    writeU8(0xFF);
+    writeU32LE(0);
+  }
+
+  var blob = new Blob([buf], { type: 'application/octet-stream' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'palette.cls';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+document.getElementById('btnDownloadCLS').addEventListener('click', function() {
+  if (!extractedBases.length) return;
+  var btn = this;
+  setDownloadLoading(btn, true);
+  setTimeout(function(){
+    var groups = buildGroups(extractedBases);
+    exportCLS(groups);
+    setDownloadLoading(btn, false);
+  }, 100);
+});
+
+/* ============================================================
+   EXPORT PROCREATE (.swatches)
+   Format: ZIP file containing Swatches.json
+   Each entry: RGB components as float 0-1, colorModel 0 (RGB),
+   colorSpace 0 (sRGB), alpha 1, version "5.0"
+============================================================ */
+async function exportSwatches(groups) {
+  var allColors = [];
+  for (var r = 0; r < groups.length; r++) {
+    for (var c = 0; c < groups[r].colors.length; c++) {
+      allColors.push(groups[r].colors[c]);
+    }
+  }
+
+  // sRGB ICC color profile - required by Procreate
+  var COLOR_PROFILE_HASH = "KzqhZFd5qeY0dE+vmwHpECsMm4j9bezteTTfhrlJr34=";
+  var COLOR_PROFILES = [{"colorSpace":0,"hash":COLOR_PROFILE_HASH,"iccName":"sRGB IEC61966-2.1","iccData":"AAAMSExpbm8CEAAAbW50clJHQiBYWVogB84AAgAJAAYAMQAAYWNzcE1TRlQAAAAASUVDIHNSR0IA\r\nAAAAAAAAAAAAAAAAAPbWAAEAAAAA0y1IUCAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\r\nAAAAAAAAAAAAAAAAAAAAAAARY3BydAAAAVAAAAAzZGVzYwAAAYQAAABsd3RwdAAAAfAAAAAUYmtw\r\ndAAAAgQAAAAUclhZWgAAAhgAAAAUZ1hZWgAAAiwAAAAUYlhZWgAAAkAAAAAUZG1uZAAAAlQAAABw\r\nZG1kZAAAAsQAAACIdnVlZAAAA0wAAACGdmlldwAAA9QAAAAkbHVtaQAAA/gAAAAUbWVhcwAABAwA\r\nAAAkdGVjaAAABDAAAAAMclRSQwAABDwAAAgMZ1RSQwAABDwAAAgMYlRSQwAABDwAAAgMdGV4dAAA\r\nAABDb3B5cmlnaHQgKGMpIDE5OTggSGV3bGV0dC1QYWNrYXJkIENvbXBhbnkAAGRlc2MAAAAAAAAA\r\nEnNSR0IgSUVDNjE5NjYtMi4xAAAAAAAAAAAAAAASc1JHQiBJRUM2MTk2Ni0yLjEAAAAAAAAAAAAA\r\nAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFhZWiAAAAAAAADzUQABAAAA\r\nARbMWFlaIAAAAAAAAAAAAAAAAAAAAABYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAA\r\nt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9kZXNjAAAAAAAAABZJRUMgaHR0cDovL3d3dy5pZWMu\r\nY2gAAAAAAAAAAAAAABZJRUMgaHR0cDovL3d3dy5pZWMuY2gAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\r\nAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZGVzYwAAAAAAAAAuSUVDIDYxOTY2LTIuMSBEZWZhdWx0\r\nIFJHQiBjb2xvdXIgc3BhY2UgLSBzUkdCAAAAAAAAAAAAAAAuSUVDIDYxOTY2LTIuMSBEZWZhdWx0\r\nIFJHQiBjb2xvdXIgc3BhY2UgLSBzUkdCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGRlc2MAAAAAAAAA\r\nLFJlZmVyZW5jZSBWaWV3aW5nIENvbmRpdGlvbiBpbiBJRUM2MTk2Ni0yLjEAAAAAAAAAAAAAACxS\r\nZWZlcmVuY2UgVmlld2luZyBDb25kaXRpb24gaW4gSUVDNjE5NjYtMi4xAAAAAAAAAAAAAAAAAAAA\r\nAAAAAAAAAAAAAAB2aWV3AAAAAAATpP4AFF8uABDPFAAD7cwABBMLAANcngAAAAFYWVogAAAAAABM\r\nCVYAUAAAAFcf521lYXMAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAKPAAAAAnNpZyAAAAAAQ1JU\r\nIGN1cnYAAAAAAAAEAAAAAAUACgAPABQAGQAeACMAKAAtADIANwA7AEAARQBKAE8AVABZAF4AYwBo\r\nAG0AcgB3AHwAgQCGAIsAkACVAJoAnwCkAKkArgCyALcAvADBAMYAywDQANUA2wDgAOUA6wDwAPYA\r\n+wEBAQcBDQETARkBHwElASsBMgE4AT4BRQFMAVIBWQFgAWcBbgF1AXwBgwGLAZIBmgGhAakBsQG5\r\nAcEByQHRAdkB4QHpAfIB+gIDAgwCFAIdAiYCLwI4AkECSwJUAl0CZwJxAnoChAKOApgCogKsArYC\r\nwQLLAtUC4ALrAvUDAAMLAxYDIQMtAzgDQwNPA1oDZgNyA34DigOWA6IDrgO6A8cD0wPgA+wD+QQG\r\nBBMEIAQtBDsESARVBGMEcQR+BIwEmgSoBLYExATTBOEE8AT+BQ0FHAUrBToFSQVYBWcFdwWGBZYF\r\npgW1BcUF1QXlBfYGBgYWBicGNwZIBlkGagZ7BowGnQavBsAG0QbjBvUHBwcZBysHPQdPB2EHdAeG\r\nB5kHrAe/B9IH5Qf4CAsIHwgyCEYIWghuCIIIlgiqCL4I0gjnCPsJEAklCToJTwlkCXkJjwmkCboJ\r\nzwnlCfsKEQonCj0KVApqCoEKmAquCsUK3ArzCwsLIgs5C1ELaQuAC5gLsAvIC+EL+QwSDCoMQwxc\r\nDHUMjgynDMAM2QzzDQ0NJg1ADVoNdA2ODakNww3eDfgOEw4uDkkOZA5/DpsOtg7SDu4PCQ8lD0EP\r\nXg96D5YPsw/PD+wQCRAmEEMQYRB+EJsQuRDXEPURExExEU8RbRGMEaoRyRHoEgcSJhJFEmQShBKj\r\nEsMS4xMDEyMTQxNjE4MTpBPFE+UUBhQnFEkUahSLFK0UzhTwFRIVNBVWFXgVmxW9FeAWAxYmFkkW\r\nbBaPFrIW1hb6Fx0XQRdlF4kXrhfSF/cYGxhAGGUYihivGNUY+hkgGUUZaxmRGbcZ3RoEGioaURp3\r\nGp4axRrsGxQbOxtjG4obshvaHAIcKhxSHHscoxzMHPUdHh1HHXAdmR3DHeweFh5AHmoelB6+Hukf\r\nEx8+H2kflB+/H+ogFSBBIGwgmCDEIPAhHCFIIXUhoSHOIfsiJyJVIoIiryLdIwojOCNmI5QjwiPw\r\nJB8kTSR8JKsk2iUJJTglaCWXJccl9yYnJlcmhya3JugnGCdJJ3onqyfcKA0oPyhxKKIo1CkGKTgp\r\naymdKdAqAio1KmgqmyrPKwIrNitpK50r0SwFLDksbiyiLNctDC1BLXYtqy3hLhYuTC6CLrcu7i8k\r\nL1ovkS/HL/4wNTBsMKQw2zESMUoxgjG6MfIyKjJjMpsy1DMNM0YzfzO4M/E0KzRlNJ402DUTNU01\r\nhzXCNf02NzZyNq426TckN2A3nDfXOBQ4UDiMOMg5BTlCOX85vDn5OjY6dDqyOu87LTtrO6o76Dwn\r\nPGU8pDzjPSI9YT2hPeA+ID5gPqA+4D8hP2E/oj/iQCNAZECmQOdBKUFqQaxB7kIwQnJCtUL3QzpD\r\nfUPARANER0SKRM5FEkVVRZpF3kYiRmdGq0bwRzVHe0fASAVIS0iRSNdJHUljSalJ8Eo3Sn1KxEsM\r\nS1NLmkviTCpMcky6TQJNSk2TTdxOJU5uTrdPAE9JT5NP3VAnUHFQu1EGUVBRm1HmUjFSfFLHUxNT\r\nX1OqU/ZUQlSPVNtVKFV1VcJWD1ZcVqlW91dEV5JX4FgvWH1Yy1kaWWlZuFoHWlZaplr1W0VblVvl\r\nXDVchlzWXSddeF3JXhpebF69Xw9fYV+zYAVgV2CqYPxhT2GiYfViSWKcYvBjQ2OXY+tkQGSUZOll\r\nPWWSZedmPWaSZuhnPWeTZ+loP2iWaOxpQ2maafFqSGqfavdrT2una/9sV2yvbQhtYG25bhJua27E\r\nbx5veG/RcCtwhnDgcTpxlXHwcktypnMBc11zuHQUdHB0zHUodYV14XY+dpt2+HdWd7N4EXhueMx5\r\nKnmJeed6RnqlewR7Y3vCfCF8gXzhfUF9oX4BfmJ+wn8jf4R/5YBHgKiBCoFrgc2CMIKSgvSDV4O6\r\nhB2EgITjhUeFq4YOhnKG14c7h5+IBIhpiM6JM4mZif6KZIrKizCLlov8jGOMyo0xjZiN/45mjs6P\r\nNo+ekAaQbpDWkT+RqJIRknqS45NNk7aUIJSKlPSVX5XJljSWn5cKl3WX4JhMmLiZJJmQmfyaaJrV\r\nm0Kbr5wcnImc951kndKeQJ6unx2fi5/6oGmg2KFHobaiJqKWowajdqPmpFakx6U4pammGqaLpv2n\r\nbqfgqFKoxKk3qamqHKqPqwKrdavprFys0K1ErbiuLa6hrxavi7AAsHWw6rFgsdayS7LCszizrrQl\r\ntJy1E7WKtgG2ebbwt2i34LhZuNG5SrnCuju6tbsuu6e8IbybvRW9j74KvoS+/796v/XAcMDswWfB\r\n48JfwtvDWMPUxFHEzsVLxcjGRsbDx0HHv8g9yLzJOsm5yjjKt8s2y7bMNcy1zTXNtc42zrbPN8+4\r\n0DnQutE80b7SP9LB00TTxtRJ1MvVTtXR1lXW2Ndc1+DYZNjo2WzZ8dp22vvbgNwF3IrdEN2W3hze\r\not8p36/gNuC94UThzOJT4tvjY+Pr5HPk/OWE5g3mlucf56noMui86Ubp0Opb6uXrcOv77IbtEe2c\r\n7ijutO9A78zwWPDl8XLx//KM8xnzp/Q09ML1UPXe9m32+/eK+Bn4qPk4+cf6V/rn+3f8B/yY/Sn9\r\nuv5L/tz/bf//"}];
+
+  function hexToHSB(hex) {
+    var rgb = hexToRgb(hex);
+    var rf = rgb[0]/255, gf = rgb[1]/255, bf = rgb[2]/255;
+    var max = Math.max(rf,gf,bf), min = Math.min(rf,gf,bf);
+    var brightness = max;
+    var saturation = max === 0 ? 0 : (max - min) / max;
+    var hue = 0;
+    if (max !== min) {
+      var d = max - min;
+      if (max === rf) hue = ((gf - bf) / d + (gf < bf ? 6 : 0)) / 6;
+      else if (max === gf) hue = ((bf - rf) / d + 2) / 6;
+      else hue = ((rf - gf) / d + 4) / 6;
+    }
+    return { rf: rf, gf: gf, bf: bf, h: hue, s: saturation, b: brightness };
+  }
+
+  // Build swatches JSON string for a chunk of max 30 colors, padded with nulls
+  function makeSwatchesJSON(name, colors) {
+    var slots = [];
+    for (var i = 0; i < 30; i++) {
+      if (i < colors.length) {
+        var hsb = hexToHSB(colors[i]);
+        slots.push({
+          "alpha": 1,
+          "origin": 2,
+          "colorSpace": 0,
+          "colorModel": 0,
+          "brightness": hsb.b,
+          "components": [hsb.rf, hsb.gf, hsb.bf],
+          "version": "5.0",
+          "colorProfile": COLOR_PROFILE_HASH,
+          "saturation": hsb.s,
+          "hue": hsb.h
+        });
+      } else {
+        slots.push(null);
+      }
+    }
+    return JSON.stringify({ "name": name, "swatches": slots, "colorProfiles": COLOR_PROFILES });
+  }
+
+  // Compress bytes using DeflateRaw via CompressionStream
+  async function deflateRaw(data) {
+    var cs = new CompressionStream('deflate-raw');
+    var w = cs.writable.getWriter();
+    w.write(data); w.close();
+    return new Uint8Array(await new Response(cs.readable).arrayBuffer());
+  }
+
+  // CRC32
+  function crc32(buf) {
+    var t = [];
+    for (var i=0;i<256;i++){var c=i;for(var j=0;j<8;j++)c=(c&1)?(0xEDB88320^(c>>>1)):(c>>>1);t[i]=c;}
+    var crc=0xFFFFFFFF;
+    for (var k=0;k<buf.length;k++) crc=t[(crc^buf[k])&0xFF]^(crc>>>8);
+    return (crc^0xFFFFFFFF)>>>0;
+  }
+
+  function u16(v){return [v&0xFF,(v>>8)&0xFF];}
+  function u32(v){return [v&0xFF,(v>>8)&0xFF,(v>>16)&0xFF,(v>>24)&0xFF];}
+
+  // Build a ZIP with deflate-compressed entries
+  async function makeZipMulti(entries) {
+    // entries: [{name, data (Uint8Array)}]
+    var localParts = [];
+    var cdParts = [];
+    var offset = 0;
+    for (var e = 0; e < entries.length; e++) {
+      var nameBytes = new TextEncoder().encode(entries[e].name);
+      var raw = entries[e].data;
+      var compressed = await deflateRaw(raw);
+      var crc = crc32(raw);
+      var localHdr = new Uint8Array([
+        0x50,0x4B,0x03,0x04, // sig
+        0x14,0x00,           // version needed
+        0x00,0x00,           // flags
+        0x08,0x00,           // compression: deflate
+        0x00,0x00,0x00,0x00, // mod time/date
+        ...u32(crc),
+        ...u32(compressed.length),
+        ...u32(raw.length),
+        ...u16(nameBytes.length),
+        0x00,0x00,           // extra len
+        ...nameBytes
+      ]);
+      localParts.push(localHdr);
+      localParts.push(compressed);
+      var cd = new Uint8Array([
+        0x50,0x4B,0x01,0x02,
+        0x14,0x00, 0x14,0x00,
+        0x00,0x00, 0x08,0x00,
+        0x00,0x00,0x00,0x00,
+        ...u32(crc),
+        ...u32(compressed.length),
+        ...u32(raw.length),
+        ...u16(nameBytes.length),
+        0x00,0x00, 0x00,0x00,
+        0x00,0x00, 0x00,0x00,
+        0x00,0x00,0x00,0x00,
+        ...u32(offset),
+        ...nameBytes
+      ]);
+      cdParts.push(cd);
+      offset += localHdr.length + compressed.length;
+    }
+    var cdOffset = offset;
+    var cdSize = cdParts.reduce(function(a,b){return a+b.length;},0);
+    var eocd = new Uint8Array([
+      0x50,0x4B,0x05,0x06,
+      0x00,0x00, 0x00,0x00,
+      ...u16(entries.length),
+      ...u16(entries.length),
+      ...u32(cdSize),
+      ...u32(cdOffset),
+      0x00,0x00
+    ]);
+    var total = offset + cdSize + eocd.length;
+    var out = new Uint8Array(total);
+    var pos = 0;
+    function write(arr){out.set(arr,pos);pos+=arr.length;}
+    localParts.forEach(write);
+    cdParts.forEach(write);
+    write(eocd);
+    return out;
+  }
+
+  // Split allColors into chunks of 30, each becomes one .swatches file
+  var CHUNK = 30;
+  var chunks = [];
+  for (var i = 0; i < allColors.length; i += CHUNK) {
+    chunks.push(allColors.slice(i, i + CHUNK));
+  }
+
+  // If only one chunk, export single .swatches file directly
+  if (chunks.length === 1) {
+    var json = makeSwatchesJSON('palette', chunks[0]);
+    var raw = new TextEncoder().encode(json);
+    var compressed = await deflateRaw(raw);
+    var crc = crc32(raw);
+    var nameBytes = new TextEncoder().encode('Swatches.json');
+    var localHdr = new Uint8Array([
+      0x50,0x4B,0x03,0x04, 0x14,0x00, 0x00,0x00, 0x08,0x00, 0x00,0x00,0x00,0x00,
+      ...u32(crc), ...u32(compressed.length), ...u32(raw.length),
+      ...u16(nameBytes.length), 0x00,0x00, ...nameBytes
+    ]);
+    var cdEntry = new Uint8Array([
+      0x50,0x4B,0x01,0x02, 0x14,0x00, 0x14,0x00, 0x00,0x00, 0x08,0x00, 0x00,0x00,0x00,0x00,
+      ...u32(crc), ...u32(compressed.length), ...u32(raw.length),
+      ...u16(nameBytes.length), 0x00,0x00, 0x00,0x00, 0x00,0x00, 0x00,0x00, 0x00,0x00,0x00,0x00,
+      ...u32(0), ...nameBytes
+    ]);
+    var cdOffset2 = localHdr.length + compressed.length;
+    var eocd2 = new Uint8Array([
+      0x50,0x4B,0x05,0x06, 0x00,0x00, 0x00,0x00, 0x01,0x00, 0x01,0x00,
+      ...u32(cdEntry.length), ...u32(cdOffset2), 0x00,0x00
+    ]);
+    var total2 = cdOffset2 + cdEntry.length + eocd2.length;
+    var out2 = new Uint8Array(total2);
+    out2.set(localHdr,0); out2.set(compressed,localHdr.length);
+    out2.set(cdEntry,cdOffset2); out2.set(eocd2,cdOffset2+cdEntry.length);
+    var blob = new Blob([out2],{type:'application/octet-stream'});
+    var a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='palette.swatches'; a.click(); URL.revokeObjectURL(a.href);
+    return;
+  }
+
+  // Multiple chunks: download each as a separate file with small delay
+  for (var ci = 0; ci < chunks.length; ci++) {
+    var label = 'palette-' + (ci+1) + '-of-' + chunks.length;
+    var json2 = makeSwatchesJSON(label, chunks[ci]);
+    var raw2 = new TextEncoder().encode(json2);
+    var compressed2 = await deflateRaw(raw2);
+    var crc2 = crc32(raw2);
+    var nameBytes2 = new TextEncoder().encode('Swatches.json');
+    var localHdr2 = new Uint8Array([
+      0x50,0x4B,0x03,0x04, 0x14,0x00, 0x00,0x00, 0x08,0x00, 0x00,0x00,0x00,0x00,
+      ...u32(crc2), ...u32(compressed2.length), ...u32(raw2.length),
+      ...u16(nameBytes2.length), 0x00,0x00, ...nameBytes2
+    ]);
+    var cdEntry2 = new Uint8Array([
+      0x50,0x4B,0x01,0x02, 0x14,0x00, 0x14,0x00, 0x00,0x00, 0x08,0x00, 0x00,0x00,0x00,0x00,
+      ...u32(crc2), ...u32(compressed2.length), ...u32(raw2.length),
+      ...u16(nameBytes2.length), 0x00,0x00, 0x00,0x00, 0x00,0x00, 0x00,0x00, 0x00,0x00,0x00,0x00,
+      ...u32(0), ...nameBytes2
+    ]);
+    var cdOff2 = localHdr2.length + compressed2.length;
+    var eocd3 = new Uint8Array([
+      0x50,0x4B,0x05,0x06, 0x00,0x00, 0x00,0x00, 0x01,0x00, 0x01,0x00,
+      ...u32(cdEntry2.length), ...u32(cdOff2), 0x00,0x00
+    ]);
+    var tot3 = cdOff2 + cdEntry2.length + eocd3.length;
+    var out3 = new Uint8Array(tot3);
+    out3.set(localHdr2,0); out3.set(compressed2,localHdr2.length);
+    out3.set(cdEntry2,cdOff2); out3.set(eocd3,cdOff2+cdEntry2.length);
+    var blob2 = new Blob([out3],{type:'application/octet-stream'});
+    var a2 = document.createElement('a'); a2.href=URL.createObjectURL(blob2);
+    a2.download = label + '.swatches'; a2.click();
+    URL.revokeObjectURL(a2.href);
+    await new Promise(function(res){setTimeout(res,300);});
+  }
+}
+
+document.getElementById('btnDownloadSwatches').addEventListener('click', function() {
+  if (!extractedBases.length) return;
+  var btn = this;
+  setDownloadLoading(btn, true);
+  var groups = buildGroups(extractedBases);
+  exportSwatches(groups).finally(function(){ setDownloadLoading(btn, false); });
+});
+</script>
+</body>
+</html>
