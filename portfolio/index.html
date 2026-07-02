@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Craving ART ✦ Portofolio & Testimoni</title>
+<meta name="description" content="Portofolio dan testimoni Craving ART — digital art commission custom sejak 2021."/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --black:#1a1210;--white:#fdf9f6;--gray:#ede8e2;--mid:#8a7e75;
+    --teal:#5bbfc4;--teal-light:#99E1E5;--teal-dark:#3a9fa4;
+    --peach:#FBAFAF;--peach-light:#FBAFAF;--peach-dark:#e07878;
+    --cream:#F3E8CB;--salmon:#F2C6B4;
+    --accent-gradient:linear-gradient(135deg,#99E1E5 0%,#FBAFAF 100%);
+  }
+  html.dark{--black:#f5ede8;--white:#12100e;--gray:#2a2420;--mid:#a89880}
+  html.dark body{background:#12100e;color:#f5ede8}
+  html.dark nav{background:rgba(18,16,14,.94);border-bottom-color:#2a2420}
+  html.dark .hero-bg-dots{background-image:radial-gradient(circle,#3a2e28 1px,transparent 1px)}
+  html.dark .cat-tab{border-color:#99E1E5;color:#99E1E5}
+  html.dark .cat-tab.active,html.dark .cat-tab:hover{background:linear-gradient(135deg,var(--teal),var(--peach));color:#fff;border-color:transparent}
+  html.dark .grid-item{background:#161e1f;border-color:#2a4244}
+  html.dark .grid-item:hover{border-color:#99E1E5}
+  html.dark .testi-item{background:#161e1f;border-color:#2a4244}
+  html.dark .testi-item:hover{border-color:#99E1E5}
+  .testi-load-more-btn{display:block;width:100%;margin-top:8px;padding:12px;border-radius:16px;border:2px solid var(--teal);background:transparent;color:var(--teal-dark);font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:800;cursor:pointer;transition:all .2s;grid-column:1/-1}
+  .testi-load-more-btn:hover{background:var(--teal);color:#fff}
+  html.dark .testi-load-more-btn{color:var(--teal-light);border-color:var(--teal)}
+  html.dark .testi-load-more-btn:hover{background:var(--teal);color:#fff}
+  html.dark .video-thumb{border-color:#2a4244}
+  html.dark .video-thumb:hover{border-color:#99E1E5}
+  html.dark .acc-header{background:#161e1f;border-color:#2a4244;color:#f5ede8}
+  html.dark .acc-header:hover{background:#1e2c2e}
+  html.dark .acc-body{border-color:#2a4244;background:#12100e}
+  html.dark .acc-count{background:#2a4244;color:#99E1E5}
+  html.dark .acc-item:has(.acc-body.open){border-color:#99E1E5}
+  html.dark footer{background:linear-gradient(180deg,#0e0c0a 0%,#0a1212 100%);color:#f5ede8;border-top-color:rgba(153,225,229,.18)}
+  html.dark .f-links a{color:rgba(245,237,232,.6)}
+  html.dark .f-links a:hover{color:#99E1E5}
+  html.dark .order-card{border-color:#2a4244;background:#161e1f}
+  html.dark .stat-box{border-color:#2a4244;background:#12100e}
+  html.dark .order-note{border-color:#2a4244}
+  html.dark .order-note strong{color:#f5ede8}
+  html.dark .btn-order{background:linear-gradient(135deg,var(--teal),var(--peach));color:#fff;border-color:transparent}
+  html.dark .btn-order:hover{opacity:.85}
+  html.dark .btn-back{border-color:#99E1E5;color:#99E1E5}
+  html.dark .btn-back svg{stroke:#99E1E5}
+  html.dark .btn-back:hover{background:#99E1E5;color:#fff}
+  html.dark .btn-back:hover svg{stroke:#1a1210}
+  html.dark .dark-toggle{border-color:#99E1E5}
+  html.dark .cat-tabs-sticky{background:#12100e}
+  html.dark .order-card-icon{background:linear-gradient(135deg,var(--teal),var(--peach));color:#fff}
+  .logo-bg-pill{fill:#1a1210;transition:fill .3s}
+  html.dark .logo-bg-pill{fill:#1e3638}
+  .art-text{background:linear-gradient(135deg,#5bbfc4 0%,#FBAFAF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  html.dark .art-text{background:linear-gradient(135deg,#99E1E5 0%,#FBAFAF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scrollbar-width:none}
+  body::-webkit-scrollbar{display:none}
+  body{font-family:'Nunito Sans','Nunito',-apple-system,sans-serif;background:var(--white);color:var(--black);overflow-x:hidden}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,249,246,.93);backdrop-filter:blur(14px);border-bottom:1.5px solid var(--gray);padding:10px 16px;display:flex;align-items:center;justify-content:flex-end;gap:8px}
+  .nav-right{display:flex;align-items:center;gap:6px}
+  .btn-back{background:transparent;border:2px solid var(--black);height:32px;border-radius:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 14px;transition:all .2s;text-decoration:none;color:var(--black);flex-shrink:0;font-family:'Nunito',sans-serif;font-size:.72rem;font-weight:900;letter-spacing:.3px}
+  .btn-back:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+  .btn-back:hover svg{stroke:#fff}
+  .btn-back svg{stroke:var(--black);transition:stroke .2s}
+
+  html.dark .dark-toggle:hover{opacity:.85}
+  .dark-toggle{position:relative;width:72px;height:32px;border-radius:20px;border:2px solid var(--black);background:var(--black);cursor:pointer;margin-right:8px;flex-shrink:0;transition:background .3s,border-color .3s;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .dark-toggle .dt-inner{display:flex;align-items:center;gap:4px;flex-direction:row}
+  .dark-toggle .dt-track{font-family:'Nunito',sans-serif;font-size:.58rem;font-weight:900;letter-spacing:.5px;color:#888;user-select:none;white-space:nowrap;order:2}
+  .dark-toggle .dt-thumb{width:24px;height:24px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:.75rem;line-height:1;color:#111;flex-shrink:0;order:1}
+  html.dark .dark-toggle .dt-inner{flex-direction:row-reverse}
+  html.dark .dark-toggle .dt-track{text-align:right}
+
+  .hero{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 28px;position:relative;overflow:hidden}
+  .hero-bg-dots{position:absolute;inset:0;background-image:radial-gradient(circle,#b8dfe1 1px,transparent 1px);background-size:28px 28px;opacity:.4;pointer-events:none}
+  .hero-logo{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.3rem;letter-spacing:-.5px;margin-bottom:8px;animation:fadeUp .6s ease both;display:flex;align-items:center;gap:6px;justify-content:center}
+  .hero-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--teal),var(--peach));color:#fff;font-size:.65rem;font-weight:800;padding:4px 12px;border-radius:20px;margin-bottom:10px;letter-spacing:.5px;animation:fadeUp .6s ease both}
+  .hero h1{font-family:'Nunito',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;line-height:1.05;letter-spacing:-1.5px;margin-bottom:8px;animation:fadeUp .7s .1s ease both}
+  .hero h1 .dot{color:var(--mid)}
+  .hero-sub{font-size:clamp(.75rem,2vw,.85rem);color:var(--mid);font-weight:600;max-width:480px;line-height:1.6;animation:fadeUp .7s .2s ease both}
+
+  .cat-tabs-sticky{position:sticky;top:68px;z-index:90;background:var(--white);padding:10px 0 10px;margin-bottom:0;}
+  html.dark .cat-tabs-sticky{background:#12100e;}
+  .cat-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:0}
+  .cat-tab{font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:800;padding:8px 18px;border-radius:20px;border:2px solid var(--teal);background:transparent;color:var(--teal-dark);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px;width:100%;justify-content:center;}
+  .cat-tab.active,.cat-tab:hover{background:linear-gradient(135deg,var(--teal),var(--peach));color:#fff;border-color:transparent}
+  .cat-panel{display:none;padding-top:16px}
+  .cat-panel.active{display:block}
+  .cat-stitle{font-family:'Nunito',sans-serif;font-size:.7rem;font-weight:900;text-transform:uppercase;letter-spacing:1.5px;color:var(--mid);margin:24px 0 14px;display:flex;align-items:center;gap:5px}
+  .cat-stitle:first-child{margin-top:0}
+
+  section{padding:60px 24px}
+  .container{max-width:920px;margin:0 auto}
+  .section-tag{display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;background:linear-gradient(135deg,var(--teal),var(--peach));color:#fff;padding:4px 12px;border-radius:20px;margin-bottom:12px}
+  .section-title{font-family:'Nunito',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;letter-spacing:-1px;margin-bottom:8px}
+  .section-desc{color:var(--mid);font-size:.95rem;font-weight:600;margin-bottom:32px;line-height:1.6}
+  hr.divider{border:none;border-top:1.5px solid var(--gray);margin:0}
+
+  .port-grid{columns:2;column-gap:12px}
+  @media(min-width:560px){.port-grid{columns:3}}
+  @media(min-width:920px){.port-grid{columns:4}}
+  .grid-item{border:1.5px solid #d0ecee;border-radius:14px;overflow:hidden;break-inside:avoid;margin-bottom:12px;cursor:zoom-in;transition:border-color .2s,transform .2s;display:block}
+  .grid-item:hover{border-color:var(--teal);transform:translateY(-2px)}
+  .grid-item img{width:100%;height:auto;display:block}
+  .grid-item-empty{border:1.5px dashed var(--gray);border-radius:14px;break-inside:avoid;margin-bottom:12px;padding:40px 0;display:flex;align-items:center;justify-content:center;font-size:1.4rem;opacity:.3}
+
+  .testi-grid{columns:2;column-gap:12px}
+  @media(min-width:560px){.testi-grid{columns:3}}
+  @media(min-width:920px){.testi-grid{columns:4}}
+  .testi-item{border:1.5px solid #d0ecee;border-radius:14px;overflow:hidden;break-inside:avoid;margin-bottom:12px;cursor:zoom-in;transition:border-color .2s,transform .2s}
+  .testi-item:hover{border-color:var(--teal);transform:translateY(-2px)}
+  .testi-item img{width:100%;height:auto;display:block}
+
+  /* ORDER */
+  .order-card{border:2px solid #d0ecee;border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:18px;margin-bottom:14px}
+  .order-card-top{display:flex;align-items:center;gap:12px}
+  .order-card-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--teal),var(--peach));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+  .order-card-title{font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem}
+  .order-card-sub{font-size:.75rem;color:var(--mid);font-weight:600;margin-top:2px}
+  .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  @media(max-width:480px){.stat-row{grid-template-columns:repeat(2,1fr)}}
+  .stat-box{border:1.5px solid #d0ecee;border-radius:12px;padding:12px 8px;text-align:center}
+  .stat-num{font-family:'Nunito',sans-serif;font-size:1.5rem;font-weight:900;line-height:1}
+  .stat-lbl{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--mid);margin-top:3px}
+  .stat-box.sq .stat-num{color:#F3E8CB}
+  .stat-box.sq{background:linear-gradient(135deg,rgba(91,191,196,.12),rgba(91,191,196,.06))}
+  .stat-box.sw .stat-num{color:#99E1E5}
+  .stat-box.sw{background:linear-gradient(135deg,rgba(91,191,196,.1),rgba(91,191,196,.05))}
+  .stat-box.sd .stat-num{color:#FBAFAF}
+  .stat-box.sd{background:linear-gradient(135deg,rgba(251,175,175,.12),rgba(251,175,175,.06))}
+  .btn-order{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;border-radius:12px;background:linear-gradient(135deg,var(--teal),var(--peach));color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:.88rem;text-decoration:none;transition:all .2s;border:none}
+  .btn-order:hover{opacity:.85;transform:translateY(-1px)}
+  .order-note{border:1.5px dashed #d0ecee;border-radius:14px;padding:14px 16px;font-size:.82rem;font-weight:600;color:var(--mid);line-height:1.6}
+  .order-note strong{color:var(--black);font-weight:800}
+
+  .contact-grid{display:flex;flex-direction:row;gap:12px;margin-top:8px;justify-content:flex-start;padding:0}
+  .contact-card{border:none;border-radius:10px;padding:8px;text-decoration:none;color:var(--black);transition:all .2s;display:flex;align-items:center;justify-content:center;background:transparent}
+  .contact-card:hover{opacity:.55;transform:translateY(-2px)}
+
+  .lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;cursor:zoom-out;padding:24px 16px;overflow-y:auto}
+  .lb.open{display:flex;flex-direction:column;align-items:center;gap:16px}
+
+  footer{background:linear-gradient(180deg,#1a1210 0%,#121a1a 100%);color:#fdf9f6;padding:40px 24px;text-align:center;border-top:2px solid rgba(91,191,196,.25)}
+  .f-logo{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.4rem;margin-bottom:6px;display:flex;align-items:center;justify-content:center;gap:8px}
+  .f-sub{opacity:.5;font-size:.8rem;font-weight:600;margin-bottom:20px}
+  .f-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+  .f-links a{color:rgba(255,255,255,.6);font-size:.8rem;font-weight:700;text-decoration:none;transition:color .2s}
+  .f-links a:hover{color:#99E1E5}
+  .f-copy{opacity:.3;font-size:.72rem}
+
+  /* ACCORDION */
+  .acc-item{margin-bottom:10px;}
+  .acc-item:has(.acc-body.open){border-color:var(--teal)}
+  .acc-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;user-select:none;gap:10px;background:transparent;border:1.5px solid #d0ecee;border-radius:14px;width:100%;text-align:left;color:var(--black);transition:border-color .2s;}
+  .acc-header:hover{background:rgba(153,225,229,.08);border-color:var(--teal)}
+  .acc-header-left{display:flex;align-items:center;gap:8px;font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:900;text-transform:uppercase;letter-spacing:1.2px}
+  .acc-count{font-size:.68rem;font-weight:700;color:var(--teal-dark);background:rgba(91,191,196,.12);padding:2px 8px;border-radius:20px;margin-left:2px;border:1px solid rgba(91,191,196,.2)}
+  .acc-arrow{width:18px;height:18px;flex-shrink:0;transition:transform .3s;color:var(--mid)}
+  .acc-header.open .acc-arrow{transform:rotate(180deg)}
+  .acc-body{display:none;padding:14px;max-height:600px;overflow-y:auto;border:1.5px solid #d0ecee;border-radius:14px;margin-top:6px;}
+  .acc-body.open{display:block;}
+
+  .video-thumb{position:relative;cursor:pointer;border:1.5px solid #d0ecee;border-radius:14px;overflow:hidden;break-inside:avoid;margin-bottom:12px;transition:border-color .2s,transform .2s;}
+  .video-thumb:hover{border-color:var(--teal);transform:translateY(-2px)}
+  .video-thumb video{width:100%;height:auto;display:block;}
+  .play-btn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.28);}
+  .play-btn svg{width:44px;height:44px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4))}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes pulse{0%,100%{box-shadow:0 8px 30px rgba(91,191,196,.4)}50%{box-shadow:0 8px 44px rgba(251,175,175,.5)}}
+
+  .float-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 24px;
+    z-index: 200;
+    background: linear-gradient(135deg,var(--teal),var(--peach));
+    color: var(--black);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 30px rgba(91,191,196,.35);
+    transition: all .2s;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+  html.dark .float-btn{background:linear-gradient(135deg,var(--teal-dark),var(--peach-dark))}
+  .float-btn:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 14px 40px rgba(91,191,196,.4);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-right" style="margin-left:auto">
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDark()" aria-label="Toggle dark mode">
+      <div class="dt-inner">
+        <span class="dt-thumb" id="dt-thumb"><svg id="dt-icon-sun" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="7.05" y2="7.05"/><line x1="16.95" y1="16.95" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="7.05" y2="16.95"/><line x1="16.95" y1="7.05" x2="19.78" y2="4.22"/></svg><svg id="dt-icon-moon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span>
+        <span class="dt-track" id="dt-label">LIGHT</span>
+      </div>
+    </button>
+    <a href="/" class="btn-back" aria-label="Kembali ke main website" style="width:auto;padding:0 14px;gap:6px;font-family:'Nunito',sans-serif;font-size:.78rem;font-weight:800;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+      Home
+    </a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-dots"></div>
+  <div class="hero-logo reveal"><svg height="28" viewBox="344 690 512 512" xmlns="http://www.w3.org/2000/svg"><rect x="344" y="690" width="512" height="512" rx="110" class="logo-bg-pill"/><g><g style="fill:rgb(254,254,254);fill-opacity:1"><path d="M737.76263,872.6083C716.0057,803.6894,644.0324,763.2979,567.3388,787.50934C564.1502,788.5159,560.9415,789.638,557.72424,790.8765C512.92645,808.12256,491.08853,833.99915,475.23596,862.1473C460.4506,888.4001,452.75864,931.3015,458.81897,967.3658C472.22122,1047.1206,517.7915,1085.4691,605.50165,1084.6191C647.28876,1084.2139,680.87085,1072.5541,700.93365,1052.4084C724.95795,1028.285,741.6637,1004.31903,742.66797,956.14417C743.0329,938.63324,757.5243,924.73376,775.0352,925.09863C792.54614,925.4636,806.44556,939.955,806.08057,957.46594C804.6457,1026.2992,777.93396,1064.9744,745.8751,1097.1652C709.85516,1133.3341,657.4578,1147.5449,606.11646,1148.0426C489.20947,1149.1757,415.16895,1090.3448,396.26953,977.8768C387.98654,928.58545,397.55096,870.83203,419.97122,831.0227C441.3237,793.10913,473.407,755.37195,534.9372,731.6846C539.3634,729.9806,543.8046,728.42676,548.2442,727.02515C658.1093,692.34155,765.8708,750.9578,798.24677,853.514C803.5196,870.21625,794.2542,888.0304,777.5518,893.3033C760.8497,898.5761,743.0354,889.3105,737.76263,872.6083Z"/></g><g style="fill:rgb(153,225,229);fill-opacity:1"><path d="M493.94534,1035.9907Q477.72366,1052.8207,470.1987,1066.1257Q462.08847,1079.6854,456.40353,1109.698L456.57535,1109.7996C457.0886,1106.6471,457.68082,1103.5278,458.37552,1100.429C474.4996,1114.7554,493.3824,1125.9119,514.86646,1133.8142L518.1883,1122.6073L533.3001,1073.0763C515.4022,1065.8782,500.7959,1055.2975,489.24124,1041.28C490.76108,1039.5055,492.33432,1037.7412,493.95132,1035.9908Z"/></g><g style="fill:rgb(251,175,175);fill-opacity:1"><path d="M709.497,1043.4175L708.8115,1044.173Q697.80457,1056.3616,690.5091,1061.2501Q687.00793,1064.0176,677.48956,1069.1572Q671.9444,1071.9902,665.8598,1074.297L679.1642,1136.915Q693.95197,1132.4004,713.514,1121.8378Q732.18726,1110.4989,739.25635,1103.4072Q735.20483,1074.1637,709.497,1043.4175Z"/></g><g style="fill:rgb(243,232,203);fill-opacity:1"><path d="M533.3001,1073.0763L518.1883,1122.6072L513.7056,1137.7297L514.9887,1133.8612Q556.024,1148.2344,600.08954,1148.0553L601.9006,1084.6355Q561.9531,1084.6643,533.3001,1073.0763Z"/></g><g style="fill:rgb(242,198,180);fill-opacity:1"><path d="M665.8604,1074.2999L661.5199,1075.8656Q644.3588,1081.157,636.7659,1081.9963Q618.00836,1085.0084,601.8867,1084.632L599.9914,1148.0469Q624.6005,1147.849,639.4555,1145.9297Q647.63605,1144.906,657.19214,1142.7133L667.5798,1140.1227L679.8936,1136.6876L665.8604,1074.2999Z"/></g><g style="fill:rgb(254,254,254);fill-opacity:1"><path d="M389.85867,1140.3279C392.3695,1103.8872,395.09995,1059.6896,431.99765,1011.2733C464.9588,968.023,531.1259,914.55365,603.07855,915.9017C604.28644,915.9244,605.49243,915.96246,606.7074,916.0168C679.6823,919.28656,744.7555,979.4229,774.80096,1025.2416C808.4148,1076.5017,805.6313,1119.6073,803.59076,1154.6152C802.5724,1172.0894,787.581,1185.4296,770.10675,1184.411C752.6325,1183.3927,739.29236,1168.4012,740.3108,1150.9271C742.2357,1117.9022,743.4176,1092.9764,721.794,1060.0009C696.6023,1021.5842,647.2356,981.28375,603.87024,979.3405C603.2143,979.3112,602.5552,979.2902,601.8912,979.2778C559.32794,978.4804,510.05017,1013.4308,482.4133,1049.695C457.72385,1082.0917,455.51956,1109.5109,453.09598,1144.685C451.89273,1162.1475,436.76114,1175.3284,419.29868,1174.1251C401.83615,1172.9219,388.65543,1157.7903,389.85867,1140.3279Z"/></g></g></svg>Craving<span class="art-text">ART</span></div>
+  <div class="hero-badge">✦ Portofolio &amp; Testimoni</div>
+  <p class="hero-sub">© Craving ART · All rights reserved. Karya & testimoni tidak untuk di-download, repost, atau diklaim.</p>
+  <div class="loading-notice reveal" style="margin-top:14px;display:inline-flex;align-items:center;gap:8px;background:rgba(91,191,196,.1);border:1.5px solid rgba(91,191,196,.3);border-radius:20px;padding:8px 16px;font-size:.75rem;font-weight:700;color:var(--mid);max-width:420px;line-height:1.5;">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:var(--teal-dark)"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    Portofolio ini memuat banyak gambar berkualitas tinggi. Loading mungkin butuh beberapa saat — terima kasih sudah menunggu!
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<section id="main">
+  <div class="container">
+    <div class="cat-tabs-sticky">
+    <div class="cat-tabs">
+      <button class="cat-tab active" data-tab="portofolio" style="display:inline-flex;align-items:center;gap:6px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Karya</button>
+      <button class="cat-tab" data-tab="testimoni" style="display:inline-flex;align-items:center;gap:6px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 7l.8 2.2 2.2.3-1.6 1.5.4 2.2-1.8-1-1.8 1 .4-2.2-1.6-1.5 2.2-.3z" fill="currentColor"/></svg> Ulasan</button>
+      <button class="cat-tab" data-tab="orderan" style="display:inline-flex;align-items:center;gap:6px">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="pointer-events:none;flex-shrink:0"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.99 1.61h9.72a2 2 0 001.99-1.61L23 6H6"/></svg>
+        Orderan
+      </button>
+    </div>
+    </div>
+
+    <div class="cat-panel active" id="panel-portofolio">
+      <!-- Commission Art -->
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)" data-target="acc-commission">
+          <span class="acc-header-left"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><path d="M12 19l7-7-7-7M5 19l7-7-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Commission Art <span class="acc-count" id="cnt-commission">—</span></span>
+          <svg class="acc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="acc-body" id="acc-commission">
+          <div class="port-grid" id="grid-commission"></div>
+        </div>
+      </div>
+      <!-- YCH -->
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)" data-target="acc-motion">
+          <span class="acc-header-left"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="7" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg> YCH <span class="acc-count" id="cnt-motion">—</span></span>
+          <svg class="acc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="acc-body" id="acc-motion">
+          <div class="port-grid" id="grid-motion"></div>
+        </div>
+      </div>
+      <!-- Creative -->
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)" data-target="acc-creative">
+          <span class="acc-header-left"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><path d="M18.37 2.63L14 7l-1.59-1.59a2 2 0 00-2.83 0L8 7l9 9 1.59-1.58a2 2 0 000-2.83L17 10l4.37-4.37a2.12 2.12 0 00-3-3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 7c-2 2-6.5 5-6.5 10a3.5 3.5 0 007 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Creative <span class="acc-count" id="cnt-creative">—</span></span>
+          <svg class="acc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="acc-body" id="acc-creative">
+          <div class="port-grid" id="grid-creative"></div>
+        </div>
+      </div>
+      <!-- Mini Card Art -->
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)" data-target="acc-experiment">
+          <span class="acc-header-left"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Mini Card Art <span class="acc-count" id="cnt-experiment">—</span></span>
+          <svg class="acc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="acc-body" id="acc-experiment">
+          <div class="port-grid" id="grid-experiment"></div>
+        </div>
+    </div>
+      <!-- Branding -->
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)" data-target="acc-branding">
+          <span class="acc-header-left"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg> Branding <span class="acc-count" id="cnt-branding">—</span></span>
+          <svg class="acc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="acc-body" id="acc-branding">
+          <div class="port-grid" id="grid-branding"></div>
+        </div>
+      </div>
+      <!-- Proses -->
+      <div class="acc-item">
+       <button class="acc-header" onclick="toggleAcc(this)" data-target="acc-proses">
+        <span class="acc-header-left"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg> Proses <span class="acc-count" id="cnt-proses">—</span></span>
+        <svg class="acc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+       </button>
+        <div class="acc-body" id="acc-proses">
+        <div class="port-grid" id="grid-proses"></div>
+         </div>
+      </div>
+    </div>
+
+    <div class="cat-panel" id="panel-testimoni">
+  <div class="acc-item">
+    <div class="acc-header open" style="cursor:default;">
+      <span class="acc-header-left" style="display:flex;align-items:center;gap:6px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="13" y2="14"/></svg> kata pelanggan</span>
+    </div>
+    <div class="acc-body open" id="acc-testi">
+      <div class="testi-grid" id="grid-testi"></div>
+    </div>
+  </div>
+    </div>
+
+    <div class="cat-panel" id="panel-orderan">
+      <div class="cat-stitle">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="13" y2="15"/></svg>
+        Status Antrian
+      </div>
+      <div class="order-card">
+        <div class="order-card-top">
+          <div class="order-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor" stroke="none"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor" stroke="none"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor" stroke="none"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+          </div>
+          <div>
+            <div class="order-card-title">Craving ART</div>
+            <div class="order-card-sub">commission queue</div>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-box"><div class="stat-num" id="q-total">—</div><div class="stat-lbl">Total</div></div>
+          <div class="stat-box sq"><div class="stat-num" id="q-antri">—</div><div class="stat-lbl">Antri</div></div>
+          <div class="stat-box sw"><div class="stat-num" id="q-wip">—</div><div class="stat-lbl">Dikerjain</div></div>
+          <div class="stat-box sd"><div class="stat-num" id="q-done">—</div><div class="stat-lbl">Selesai</div></div>
+        </div>
+        <a href="https://artcraving.my.id/workdays/" target="_blank" class="btn-order">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Lihat Detail Orderan Lengkap
+        </a>
+      </div>
+      <div class="order-note">
+        <strong>Cara cek orderanmu:</strong> Klik tombol di atas → cari nama atau username kamu → lihat status, posisi antrian, dan estimasi selesai.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<section id="contact">
+  <div class="container">
+    <div class="reveal"><span class="section-tag" style="display:inline-flex;align-items:center;gap:6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg> Kontak</span></div>
+    <h2 class="section-title reveal d1">Mau Ngobrol Dulu?</h2>
+    <p class="section-desc reveal d2">Konsultasi santai dulu juga boleh — artist siap balas!</p>
+    <div class="contact-grid reveal d2">
+      <a href="https://t.me/jajanmurahbot" target="_blank" class="contact-card contact-tg">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#99E1E5"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.19 13.664l-2.954-.924c-.642-.204-.657-.642.136-.953l11.57-4.461c.537-.194 1.006.131.952.895z"/></svg>
+      </a>
+      <a href="https://wa.me/6285755055919" target="_blank" class="contact-card contact-wa">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#99E1E5"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+      <a href="mailto: artcrav@gmail.com" class="contact-card contact-em">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2C6B4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo"><svg height="28" viewBox="344 690 512 512" xmlns="http://www.w3.org/2000/svg"><rect x="344" y="690" width="512" height="512" rx="110" style="fill:#1e3638"/><g><g style="fill:rgb(254,254,254);fill-opacity:1"><path d="M737.76263,872.6083C716.0057,803.6894,644.0324,763.2979,567.3388,787.50934C564.1502,788.5159,560.9415,789.638,557.72424,790.8765C512.92645,808.12256,491.08853,833.99915,475.23596,862.1473C460.4506,888.4001,452.75864,931.3015,458.81897,967.3658C472.22122,1047.1206,517.7915,1085.4691,605.50165,1084.6191C647.28876,1084.2139,680.87085,1072.5541,700.93365,1052.4084C724.95795,1028.285,741.6637,1004.31903,742.66797,956.14417C743.0329,938.63324,757.5243,924.73376,775.0352,925.09863C792.54614,925.4636,806.44556,939.955,806.08057,957.46594C804.6457,1026.2992,777.93396,1064.9744,745.8751,1097.1652C709.85516,1133.3341,657.4578,1147.5449,606.11646,1148.0426C489.20947,1149.1757,415.16895,1090.3448,396.26953,977.8768C387.98654,928.58545,397.55096,870.83203,419.97122,831.0227C441.3237,793.10913,473.407,755.37195,534.9372,731.6846C539.3634,729.9806,543.8046,728.42676,548.2442,727.02515C658.1093,692.34155,765.8708,750.9578,798.24677,853.514C803.5196,870.21625,794.2542,888.0304,777.5518,893.3033C760.8497,898.5761,743.0354,889.3105,737.76263,872.6083Z"/></g><g style="fill:rgb(153,225,229);fill-opacity:1"><path d="M493.94534,1035.9907Q477.72366,1052.8207,470.1987,1066.1257Q462.08847,1079.6854,456.40353,1109.698L456.57535,1109.7996C457.0886,1106.6471,457.68082,1103.5278,458.37552,1100.429C474.4996,1114.7554,493.3824,1125.9119,514.86646,1133.8142L518.1883,1122.6073L533.3001,1073.0763C515.4022,1065.8782,500.7959,1055.2975,489.24124,1041.28C490.76108,1039.5055,492.33432,1037.7412,493.95132,1035.9908Z"/></g><g style="fill:rgb(251,175,175);fill-opacity:1"><path d="M709.497,1043.4175L708.8115,1044.173Q697.80457,1056.3616,690.5091,1061.2501Q687.00793,1064.0176,677.48956,1069.1572Q671.9444,1071.9902,665.8598,1074.297L679.1642,1136.915Q693.95197,1132.4004,713.514,1121.8378Q732.18726,1110.4989,739.25635,1103.4072Q735.20483,1074.1637,709.497,1043.4175Z"/></g><g style="fill:rgb(243,232,203);fill-opacity:1"><path d="M533.3001,1073.0763L518.1883,1122.6072L513.7056,1137.7297L514.9887,1133.8612Q556.024,1148.2344,600.08954,1148.0553L601.9006,1084.6355Q561.9531,1084.6643,533.3001,1073.0763Z"/></g><g style="fill:rgb(242,198,180);fill-opacity:1"><path d="M665.8604,1074.2999L661.5199,1075.8656Q644.3588,1081.157,636.7659,1081.9963Q618.00836,1085.0084,601.8867,1084.632L599.9914,1148.0469Q624.6005,1147.849,639.4555,1145.9297Q647.63605,1144.906,657.19214,1142.7133L667.5798,1140.1227L679.8936,1136.6876L665.8604,1074.2999Z"/></g><g style="fill:rgb(254,254,254);fill-opacity:1"><path d="M389.85867,1140.3279C392.3695,1103.8872,395.09995,1059.6896,431.99765,1011.2733C464.9588,968.023,531.1259,914.55365,603.07855,915.9017C604.28644,915.9244,605.49243,915.96246,606.7074,916.0168C679.6823,919.28656,744.7555,979.4229,774.80096,1025.2416C808.4148,1076.5017,805.6313,1119.6073,803.59076,1154.6152C802.5724,1172.0894,787.581,1185.4296,770.10675,1184.411C752.6325,1183.3927,739.29236,1168.4012,740.3108,1150.9271C742.2357,1117.9022,743.4176,1092.9764,721.794,1060.0009C696.6023,1021.5842,647.2356,981.28375,603.87024,979.3405C603.2143,979.3112,602.5552,979.2902,601.8912,979.2778C559.32794,978.4804,510.05017,1013.4308,482.4133,1049.695C457.72385,1082.0917,455.51956,1109.5109,453.09598,1144.685C451.89273,1162.1475,436.76114,1175.3284,419.29868,1174.1251C401.83615,1172.9219,388.65543,1157.7903,389.85867,1140.3279Z"/></g></g></svg>Craving<span style="background:linear-gradient(135deg,var(--teal),var(--peach));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">ART</span></div>
+  <div class="f-sub">Digital Art Commission · Sejak 28 Januari 2021</div>
+  <div class="f-copy">© 2021–2026 Craving ART · All rights reserved · Karya tidak untuk direpost atau diklaim sebagai milik sendiri.</div>
+</footer>
+
+<div class="lb" id="lb" onclick="closeLb()"></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  var BASE = 'https://raw.githubusercontent.com/artcrav/portfolio/main/';
+
+  var portfolio = {
+    commission: [
+      'karya/c0.jpg','karya/c4.jpg','karya/c5.jpg','karya/c3.jpg','karya/c1.jpg','karya/c2.jpg','karya/c6.jpg','karya/c7.jpg','karya/c8.jpg','karya/c9.jpg','karya/c10.jpg',
+      'karya/c11.jpg','karya/c12.jpg','karya/c13.jpg','karya/ca1.jpg','karya/ca2.jpg','karya/ca3.jpg','karya/ca4.jpg',
+      'karya/ca5.jpg','karya/ca6.jpg','karya/ca7.jpg','karya/ca8.jpg',
+      'karya/ca9.jpg','karya/ca10.jpg','karya/ca11.jpg','karya/ca12.jpg',
+      'karya/ca13.jpg','karya/ca14.jpg','karya/ca15.jpg','karya/ca16.jpg',
+      'karya/ca17.jpg','karya/ca18.jpg','karya/ca19.jpg','karya/ca20.jpg',
+      'karya/ch1.jpg','karya/ch2.jpg','karya/ch3.jpg','karya/ch4.jpg','karya/ch5.jpg',
+      'karya/ch6.jpg','karya/ch7.jpg','karya/ch8.jpg','karya/ch9.jpg','karya/ch10.jpg',
+      'karya/ch11.jpg','karya/ch12.jpg','karya/ch13.jpg','karya/ch14.jpg','karya/ch15.jpg',
+      'karya/ch16.jpg','karya/ch17.jpg','karya/ch18.jpg','karya/ch19.jpg','karya/ch20.jpg',
+      'karya/ch21.jpg','karya/ch22.jpg','karya/ch23.jpg','karya/ch24.jpg','karya/ch25.jpg',
+      'karya/ch26.jpg','karya/ch27.jpg'
+    ],
+    motion: [
+      'karya/y1.jpg','karya/y2.jpg','karya/y3.jpg','karya/y4.jpg','karya/y5.jpg','karya/y6.jpg','karya/y7.jpg','karya/y8.jpg','karya/y9.jpg','karya/y10.jpg',
+      'karya/y11.jpg','karya/y12.jpg','karya/y13.jpg','karya/y14.jpg','karya/y15.jpg','karya/y16.jpg','karya/y17.jpg','karya/y18.jpg','karya/y19.jpg','karya/y20.jpg',
+      'karya/y21.jpg','karya/y22.jpg','karya/y23.jpg','karya/y24.jpg','karya/y25.jpg','karya/y26.jpg','karya/y27.jpg','karya/y28.jpg','karya/y29.jpg','karya/y30.jpg',
+      'karya/y31.jpg','karya/y32.jpg','karya/y33.jpg','karya/y34.jpg','karya/y35.jpg','karya/y36.jpg','karya/y37.jpg','karya/y38.jpg','karya/y39.jpg','karya/y40.jpg',
+      'karya/y41.jpg','karya/y42.jpg','karya/y43.jpg','karya/y44.jpg','karya/y45.jpg','karya/y46.jpg','karya/y47.jpg','karya/y48.jpg','karya/y49.jpg','karya/y50.jpg',
+      'karya/y51.jpg','karya/y52.jpg','karya/y53.jpg','karya/y54.jpg','karya/y55.jpg'
+    ],
+    creative: ['karya/r1.jpg'],
+    branding: [],
+    experiment: [
+      'karya/e1.jpg','karya/e2.jpg','karya/e3.jpg','karya/e4.jpg',
+      'karya/e5.jpg','karya/e6.jpg','karya/e7.jpg','karya/e8.jpg',
+      'karya/e9.jpg','karya/e10.jpg','karya/e11.jpg','karya/e12.jpg',
+      'karya/e13.jpg','karya/e14.jpg','karya/e15.jpg','karya/e16.jpg',
+      'karya/e17.jpg','karya/e18.jpg','karya/e19.jpg','karya/e20.jpg',
+      'karya/e21.jpg','karya/e22.jpg','karya/e23.jpg','karya/e24.jpg',
+      'karya/e25.jpg','karya/e26.jpg','karya/e27.jpg','karya/e28.jpg',
+      'karya/e29.jpg','karya/e30.jpg','karya/e31.jpg','karya/e32.jpg',
+      'karya/e33.jpg','karya/e34.jpg','karya/e35.jpg'
+      ]
+  };
+
+  var proses = [
+  'proses/p1.jpg','proses/v1.mp4','proses/v2.mp4','proses/v3.mp4',
+  'proses/v4.mp4','proses/v5.mp4','proses/v6.mp4','proses/v7.mp4',
+  'proses/v8.mp4'
+];
+
+  var testimoni = [
+    'testimoni/t1.jpg','testimoni/t2.jpg','testimoni/t3.jpg','testimoni/t4.jpg','testimoni/t5.jpg',
+    'testimoni/t6.jpg','testimoni/t7.jpg','testimoni/t8.jpg','testimoni/t9.jpg','testimoni/t10.jpg',
+    'testimoni/t11.jpg','testimoni/t12.jpg','testimoni/t13.jpg','testimoni/t14.jpg','testimoni/t15.jpg',
+    'testimoni/t16.jpg','testimoni/t17.jpg','testimoni/t18.jpg','testimoni/t19.jpg','testimoni/t20.jpg',
+    'testimoni/t21.jpg','testimoni/t22.jpg','testimoni/t23.jpg','testimoni/t24.jpg','testimoni/t25.jpg',
+    'testimoni/t26.jpg','testimoni/t27.jpg','testimoni/t28.jpg','testimoni/t29.jpg','testimoni/t30.jpg',
+    'testimoni/t31.jpg','testimoni/t32.jpg','testimoni/t33.jpg','testimoni/t34.jpg','testimoni/t35.jpg',
+    'testimoni/t36.jpg','testimoni/t37.jpg','testimoni/t38.jpg','testimoni/t39.jpg','testimoni/t40.jpg',
+    'testimoni/t41.jpg','testimoni/t42.jpg','testimoni/t43.jpg','testimoni/t44.jpg','testimoni/t45.jpg',
+    'testimoni/t46.jpg','testimoni/t47.jpg','testimoni/t48.jpg','testimoni/t49.jpg','testimoni/t50.jpg',
+    'testimoni/t51.jpg','testimoni/t52.jpg','testimoni/t53.jpg','testimoni/t54.jpg','testimoni/u1.jpg','testimoni/u2.jpg','testimoni/u3.jpg','testimoni/u4.jpg','testimoni/u5.jpg',
+    'testimoni/u6.jpg','testimoni/u7.jpg','testimoni/u8.jpg','testimoni/u9.jpg','testimoni/u10.jpg',
+    'testimoni/u11.jpg','testimoni/u12.jpg','testimoni/u13.jpg','testimoni/u14.jpg','testimoni/u15.jpg',
+    'testimoni/u16.jpg','testimoni/u17.jpg','testimoni/u18.jpg','testimoni/u19.jpg','testimoni/u20.jpg',
+    'testimoni/u21.jpg','testimoni/u22.jpg','testimoni/u23.jpg','testimoni/u24.jpg','testimoni/u25.jpg',
+    'testimoni/u26.jpg','testimoni/u27.jpg','testimoni/u28.jpg','testimoni/u29.jpg','testimoni/u30.jpg',
+    'testimoni/u31.jpg','testimoni/u32.jpg','testimoni/u33.jpg','testimoni/u34.jpg','testimoni/u35.jpg',
+    'testimoni/u36.jpg','testimoni/u37.jpg','testimoni/u38.jpg','testimoni/u39.jpg','testimoni/u40.jpg',
+    'testimoni/u41.jpg','testimoni/u42.jpg','testimoni/u43.jpg','testimoni/u44.jpg','testimoni/u45.jpg',
+    'testimoni/u46.jpg','testimoni/u47.jpg','testimoni/u48.jpg','testimoni/u49.jpg','testimoni/u50.jpg',
+    'testimoni/u51.jpg','testimoni/u52.jpg','testimoni/u53.jpg','testimoni/u54.jpg','testimoni/u55.jpg',
+    'testimoni/u56.jpg','testimoni/u57.jpg','testimoni/u58.jpg','testimoni/u59.jpg','testimoni/u60.jpg',
+    'testimoni/u61.jpg','testimoni/u62.jpg','testimoni/u63.jpg','testimoni/u64.jpg','testimoni/u65.jpg',
+    'testimoni/u66.jpg','testimoni/u67.jpg','testimoni/u68.jpg','testimoni/u69.jpg','testimoni/u70.jpg',
+    'testimoni/u71.jpg','testimoni/u72.jpg','testimoni/u73.jpg','testimoni/u74.jpg','testimoni/u75.jpg',
+    'testimoni/u76.jpg','testimoni/u77.jpg','testimoni/u78.jpg','testimoni/u79.jpg','testimoni/u80.jpg',
+    'testimoni/u81.jpg','testimoni/u82.jpg','testimoni/u83.jpg','testimoni/u84.jpg','testimoni/u85.jpg',
+    'testimoni/u86.jpg','testimoni/u87.jpg','testimoni/u88.jpg','testimoni/u89.jpg','testimoni/u90.jpg',
+    'testimoni/u91.jpg','testimoni/u92.jpg','testimoni/u93.jpg','testimoni/u94.jpg','testimoni/u95.jpg',
+    'testimoni/u96.jpg','testimoni/u97.jpg','testimoni/u98.jpg','testimoni/u99.jpg','testimoni/u100.jpg',
+    'testimoni/u101.jpg','testimoni/u102.jpg','testimoni/u103.jpg','testimoni/u104.jpg','testimoni/u105.jpg',
+    'testimoni/u106.jpg','testimoni/u107.jpg','testimoni/u108.jpg','testimoni/u109.jpg','testimoni/u110.jpg',
+    'testimoni/u111.jpg','testimoni/u112.jpg','testimoni/u113.jpg','testimoni/u114.jpg','testimoni/u115.jpg',
+    'testimoni/u116.jpg','testimoni/u117.jpg','testimoni/u118.jpg','testimoni/u119.jpg','testimoni/u120.jpg',
+    'testimoni/u121.jpg','testimoni/u122.jpg','testimoni/u123.jpg','testimoni/u124.jpg','testimoni/u125.jpg',
+    'testimoni/u126.jpg','testimoni/u127.jpg','testimoni/u128.jpg','testimoni/u129.jpg','testimoni/u130.jpg',
+    'testimoni/u131.jpg','testimoni/u132.jpg','testimoni/u133.jpg','testimoni/u134.jpg','testimoni/u135.jpg',
+    'testimoni/u136.jpg','testimoni/u137.jpg','testimoni/u138.jpg','testimoni/u139.jpg','testimoni/u140.jpg',
+    'testimoni/u141.jpg','testimoni/u142.jpg','testimoni/u143.jpg','testimoni/u144.jpg','testimoni/u145.jpg',
+    'testimoni/u146.jpg','testimoni/u147.jpg','testimoni/u148.jpg','testimoni/u149.jpg','testimoni/u150.jpg',
+    'testimoni/u151.jpg','testimoni/u152.jpg','testimoni/u153.jpg','testimoni/u154.jpg','testimoni/u155.jpg',
+    'testimoni/u156.jpg','testimoni/u157.jpg','testimoni/u158.jpg','testimoni/u159.jpg','testimoni/u160.jpg',
+    'testimoni/u161.jpg','testimoni/u162.jpg','testimoni/u163.jpg','testimoni/u164.jpg','testimoni/u165.jpg',
+    'testimoni/u166.jpg','testimoni/u167.jpg','testimoni/u168.jpg','testimoni/u169.jpg','testimoni/u170.jpg',
+    'testimoni/u171.jpg','testimoni/u172.jpg','testimoni/u173.jpg','testimoni/u174.jpg','testimoni/u175.jpg',
+    'testimoni/u176.jpg','testimoni/u177.jpg','testimoni/u178.jpg','testimoni/u179.jpg','testimoni/u180.jpg',
+    'testimoni/u181.jpg','testimoni/u182.jpg','testimoni/u183.jpg','testimoni/u184.jpg','testimoni/u185.jpg',
+    'testimoni/u186.jpg','testimoni/u187.jpg','testimoni/u188.jpg','testimoni/u189.jpg','testimoni/u190.jpg',
+    'testimoni/u191.jpg','testimoni/u192.jpg','testimoni/u193.jpg','testimoni/u194.jpg','testimoni/u195.jpg',
+    'testimoni/u196.jpg','testimoni/u197.jpg','testimoni/u198.jpg','testimoni/u199.jpg','testimoni/u200.jpg',
+    'testimoni/u201.jpg','testimoni/u202.jpg','testimoni/u203.jpg','testimoni/u204.jpg','testimoni/u205.jpg',
+    'testimoni/u206.jpg','testimoni/u207.jpg','testimoni/u208.jpg','testimoni/u209.jpg','testimoni/u210.jpg',
+    'testimoni/u211.jpg','testimoni/u212.jpg','testimoni/u213.jpg','testimoni/u214.jpg','testimoni/u215.jpg',
+    'testimoni/u216.jpg','testimoni/u217.jpg','testimoni/u218.jpg','testimoni/u219.jpg','testimoni/u220.jpg',
+    'testimoni/u221.jpg','testimoni/u222.jpg','testimoni/u223.jpg','testimoni/u224.jpg','testimoni/u225.jpg',
+    'testimoni/u226.jpg','testimoni/u227.jpg','testimoni/u228.jpg','testimoni/u229.jpg','testimoni/u230.jpg',
+    'testimoni/u231.jpg','testimoni/u232.jpg','testimoni/u233.jpg','testimoni/u234.jpg','testimoni/u235.jpg',
+    'testimoni/u236.jpg','testimoni/u237.jpg','testimoni/u238.jpg','testimoni/u239.jpg','testimoni/u240.jpg',
+    'testimoni/u241.jpg','testimoni/u242.jpg','testimoni/u243.jpg','testimoni/u244.jpg','testimoni/u245.jpg',
+    'testimoni/u246.jpg','testimoni/u247.jpg','testimoni/u248.jpg','testimoni/u249.jpg','testimoni/u250.jpg',
+    'testimoni/u251.jpg','testimoni/u252.jpg','testimoni/u253.jpg','testimoni/u254.jpg','testimoni/u255.jpg',
+    'testimoni/u256.jpg','testimoni/u257.jpg','testimoni/u258.jpg','testimoni/u259.jpg','testimoni/u260.jpg',
+    'testimoni/u261.jpg','testimoni/u262.jpg','testimoni/u263.jpg','testimoni/u264.jpg','testimoni/u265.jpg',
+    'testimoni/u266.jpg','testimoni/u267.jpg','testimoni/u268.jpg','testimoni/u269.jpg','testimoni/u270.jpg',
+    'testimoni/u271.jpg','testimoni/u272.jpg','testimoni/u273.jpg','testimoni/u274.jpg','testimoni/u275.jpg',
+    'testimoni/u276.jpg','testimoni/u277.jpg','testimoni/u278.jpg','testimoni/u279.jpg','testimoni/u280.jpg',
+    'testimoni/u281.jpg','testimoni/u282.jpg','testimoni/u283.jpg','testimoni/u284.jpg','testimoni/u285.jpg',
+    'testimoni/u286.jpg','testimoni/u287.jpg','testimoni/u288.jpg','testimoni/u289.jpg','testimoni/u290.jpg',
+    'testimoni/u291.jpg','testimoni/u292.jpg','testimoni/u293.jpg','testimoni/u294.jpg','testimoni/u295.jpg',
+    'testimoni/u296.jpg','testimoni/u297.jpg','testimoni/u298.jpg','testimoni/u299.jpg','testimoni/u300.jpg',
+    'testimoni/u301.jpg','testimoni/u302.jpg','testimoni/u303.jpg','testimoni/u304.jpg','testimoni/u305.jpg',
+    'testimoni/u306.jpg','testimoni/u307.jpg','testimoni/u308.jpg','testimoni/u309.jpg','testimoni/u310.jpg',
+    'testimoni/u311.jpg','testimoni/u312.jpg','testimoni/u313.jpg','testimoni/u314.jpg','testimoni/u315.jpg',
+    'testimoni/u316.jpg','testimoni/u317.jpg','testimoni/u318.jpg','testimoni/u319.jpg','testimoni/u320.jpg',
+    'testimoni/u321.jpg','testimoni/u322.jpg','testimoni/u323.jpg','testimoni/u324.jpg','testimoni/u325.jpg',
+    'testimoni/u326.jpg','testimoni/u327.jpg','testimoni/u328.jpg','testimoni/u329.jpg','testimoni/u330.jpg',
+    'testimoni/u331.jpg','testimoni/u332.jpg','testimoni/u333.jpg','testimoni/u334.jpg','testimoni/u335.jpg',
+    'testimoni/u336.jpg','testimoni/u337.jpg','testimoni/u338.jpg','testimoni/u339.jpg','testimoni/u340.jpg',
+    'testimoni/u341.jpg','testimoni/u342.jpg','testimoni/u343.jpg','testimoni/u344.jpg','testimoni/u345.jpg',
+    'testimoni/u346.jpg','testimoni/u347.jpg','testimoni/u348.jpg','testimoni/u349.jpg','testimoni/u350.jpg',
+    'testimoni/u351.jpg','testimoni/u352.jpg','testimoni/u353.jpg','testimoni/u354.jpg','testimoni/u355.jpg',
+    'testimoni/u356.jpg','testimoni/u357.jpg','testimoni/u358.jpg','testimoni/u359.jpg','testimoni/u360.jpg',
+    'testimoni/u361.jpg','testimoni/u362.jpg','testimoni/u363.jpg','testimoni/u364.jpg','testimoni/u365.jpg',
+    'testimoni/u366.jpg','testimoni/u367.jpg','testimoni/u368.jpg','testimoni/u369.jpg','testimoni/u370.jpg',
+    'testimoni/u371.jpg','testimoni/u372.jpg','testimoni/u373.jpg','testimoni/u374.jpg','testimoni/u375.jpg',
+    'testimoni/u376.jpg','testimoni/u377.jpg','testimoni/u378.jpg','testimoni/u379.jpg','testimoni/u380.jpg',
+    'testimoni/u381.jpg','testimoni/u382.jpg','testimoni/u383.jpg','testimoni/u384.jpg','testimoni/u385.jpg',
+    'testimoni/u386.jpg','testimoni/u387.jpg','testimoni/u388.jpg','testimoni/u389.jpg','testimoni/u390.jpg',
+    'testimoni/u391.jpg','testimoni/u392.jpg','testimoni/u393.jpg'
+  ];
+
+  function renderPortofolio() {
+    Object.entries(portfolio).forEach(function(entry) {
+      var cat = entry[0], files = entry[1];
+      var el = document.getElementById('grid-' + cat);
+      if (!el) return;
+      // update count badge
+      var cnt = document.getElementById('cnt-' + cat);
+      if (cnt) cnt.textContent = files.length ? files.length : '0';
+      if (!files.length) { el.innerHTML = '<div class="grid-item-empty">✦</div>'; return; }
+      el.innerHTML = files.map(function(f) {
+        var src = f.startsWith('http') ? f : BASE + f;
+        return '<div class="grid-item" onclick="openLb(\'' + src + '\')"><img src="' + src + '" alt="" loading="lazy" onerror="this.closest(\'.grid-item\').style.display=\'none\'"></div>';
+      }).join('');
+    });
+  }
+
+  function toggleAcc(btn) {
+    var targetId = btn.getAttribute('data-target');
+    var body = document.getElementById(targetId);
+    var isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+  }
+
+  var testiPage = 0;
+  var TESTI_PER_PAGE = 30;
+
+  function renderTestimoni() {
+    var el = document.getElementById('grid-testi');
+    if (!el) return;
+    if (!testimoni.length) { el.innerHTML = '<div class="grid-item-empty">✦</div>'; return; }
+    loadMoreTestimoni();
+  }
+
+  function loadMoreTestimoni() {
+    var el = document.getElementById('grid-testi');
+    var btn = document.getElementById('testi-load-more');
+    var start = testiPage * TESTI_PER_PAGE;
+    var slice = testimoni.slice(start, start + TESTI_PER_PAGE);
+    var frag = slice.map(function(f) {
+      var src = f.startsWith('http') ? f : BASE + f;
+      return '<div class="testi-item" onclick="openLb(\'' + src + '\')"><img src="' + src + '" alt="" loading="lazy" onerror="this.closest(\'.testi-item\').style.display=\'none\'"></div>';
+    }).join('');
+    // insert before load more button if exists, else append
+    if (btn) {
+      btn.insertAdjacentHTML('beforebegin', frag);
+    } else {
+      el.insertAdjacentHTML('beforeend', frag);
+    }
+    testiPage++;
+    var loaded = testiPage * TESTI_PER_PAGE;
+    // add or remove load more button
+    if (loaded < testimoni.length) {
+      if (!btn) {
+        var b = document.createElement('button');
+        b.id = 'testi-load-more';
+        b.className = 'testi-load-more-btn';
+        b.textContent = 'Muat lebih banyak testimoni';
+        b.onclick = function() {
+          loadMoreTestimoni();
+        };
+        el.appendChild(b);
+      } else {
+        var remaining = testimoni.length - testiPage * TESTI_PER_PAGE;
+        if (remaining > 0) {
+          btn.textContent = 'Muat lebih banyak testimoni';
+        } else {
+          btn.remove();
+        }
+      }
+    } else if (btn) {
+      btn.remove();
+    }
+  }
+
+  (function() {
+  var el = document.getElementById('grid-proses');
+  var cnt = document.getElementById('cnt-proses');
+  if (!el) return;
+  if (cnt) cnt.textContent = proses.length || '0';
+  if (!proses.length) { el.innerHTML = '<div class="grid-item-empty">✦</div>'; return; }
+  el.innerHTML = proses.map(function(f) {
+    var src = f.startsWith('http') ? f : BASE + f;
+    var isVideo = f.match(/\.(mp4|webm|mov)$/i);
+    return isVideo
+      ? '<div class="video-thumb" onclick="openLbVideo(\'' + src + '\')"><video data-src="' + src + '" muted playsinline preload="none" style="width:100%;height:auto;display:block;"></video><div class="play-btn"><svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="rgba(255,255,255,0.15)"/><polygon points="10,8 18,12 10,16" fill="white"/></svg></div></div>'
+      : '<div class="grid-item" onclick="openLb(\'' + src + '\')"><img src="' + src + '" alt="" loading="lazy" onerror="this.closest(\'.grid-item\').style.display=\'none\'"></div>';
+  }).join('');
+})();
+
+  renderPortofolio();
+  renderTestimoni();
+
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) e.target.classList.add('visible');
+      else if (e.boundingClientRect.bottom < 0) e.target.classList.remove('visible');
+    });
+  }, {threshold: 0.1, rootMargin: '0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+
+  function toggleDark() {
+    var isDark = document.documentElement.classList.toggle('dark');
+    document.getElementById('dt-label').textContent = isDark ? 'DARK' : 'LIGHT';
+    document.getElementById('dt-icon-sun').style.display = isDark ? 'none' : 'inline';
+    document.getElementById('dt-icon-moon').style.display = isDark ? 'inline' : 'none';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+  (function(){
+    var saved = localStorage.getItem('theme');
+    if (saved === 'dark') {
+      document.documentElement.classList.add('dark');
+      document.getElementById('dt-label').textContent = 'DARK';
+      document.getElementById('dt-icon-sun').style.display = 'none';
+      document.getElementById('dt-icon-moon').style.display = 'inline';
+    }
+  })();
+
+  document.querySelectorAll('.cat-tab').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var id = btn.getAttribute('data-tab');
+      document.querySelectorAll('.cat-tab').forEach(function(t) { t.classList.remove('active'); });
+      document.querySelectorAll('.cat-panel').forEach(function(p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById('panel-' + id).classList.add('active');
+      // Lazy load videos when proses tab is opened
+      if (id === 'proses') {
+        document.querySelectorAll('#grid-proses video[data-src]').forEach(function(v) {
+          if (!v.src || v.src === window.location.href) {
+            v.src = v.getAttribute('data-src');
+            v.removeAttribute('data-src');
+          }
+        });
+      }
+    });
+  });
+
+  function openLb(src) {
+    var lb = document.getElementById('lb');
+    lb.innerHTML = '<img src="' + src + '" alt="" style="max-width:92vw;max-height:92vh;border-radius:12px;object-fit:contain">';
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLb() {
+    var lb = document.getElementById('lb');
+    lb.classList.remove('open');
+    lb.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+  
+  function openLbVideo(src) {
+    var lb = document.getElementById('lb');
+    lb.innerHTML = '<video src="' + src + '" controls autoplay muted playsinline style="max-width:92vw;max-height:92vh;border-radius:12px;object-fit:contain"></video>';
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+        }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLb();
+  });
+</script>
+
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js';
+  import { getFirestore, collection, onSnapshot } from 'https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js';
+
+  const app = initializeApp({
+    apiKey: "AIzaSyBHBjDl7imuaGn3-NU6Oev9mkKYQRubW_g",
+    authDomain: "cravingart-6bcfd.firebaseapp.com",
+    projectId: "cravingart-6bcfd",
+    storageBucket: "cravingart-6bcfd.firebasestorage.app",
+    messagingSenderId: "509454367633",
+    appId: "1:509454367633:web:2b00d81adeb546ca76b830"
+  });
+
+  const db = getFirestore(app);
+
+  onSnapshot(collection(db, 'orders'), function(snap) {
+    var total = snap.size;
+    var antri = 0, wip = 0, done = 0;
+    snap.forEach(function(doc) {
+      var s = doc.data().status;
+      if (s === 'queued') antri++;
+      else if (s === 'wip') wip++;
+      else if (s === 'done') done++;
+    });
+    document.getElementById('q-total').textContent = total;
+    document.getElementById('q-antri').textContent = antri;
+    document.getElementById('q-wip').textContent = wip;
+    document.getElementById('q-done').textContent = done;
+  });
+</script>
+  
+  <a href="/#order" target="_blank" class="float-btn" aria-label="Order Sekarang">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+</a>
+</body>
+</html>
