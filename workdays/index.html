@@ -758,10 +758,11 @@ function dlColor(days,status){
 // ── PROGRESS
 function calcWorkDays(ds){
   if(!ds)return null;
-  var p=ds.split('-'),start=new Date(+p[0],+p[1]-1,+p[2]),days=0,cur=new Date(start);
+  var p=ds.split('-'),cur=new Date(+p[0],+p[1]-1,+p[2]),days=0;
+  cur.setDate(cur.getDate()+1); // mulai hitung dari hari SETELAH tanggal order, sinkron dgn addWorkDays
   while(cur<=TODAY){if(cur.getDay()!==0&&cur.getDay()!==6)days++;cur.setDate(cur.getDate()+1);}
   return days;
-}
+  }
 // add N work days starting the day AFTER ds
 function addWorkDays(ds,n){
   if(!ds)return null;
